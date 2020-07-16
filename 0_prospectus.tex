@@ -1,0 +1,92 @@
+\documentclass[defaultstyle,11pt]{thesis}
+
+\usepackage{amssymb}		% to get all AMS symbols
+\usepackage{graphicx}		% to insert figures
+\usepackage{hyperref}		% PDF hyperreferences??
+
+\usepackage{float}
+\usepackage{enumitem}
+\usepackage{expex}
+\usepackage{multirow}
+\usepackage{todonotes}
+\usepackage{natbib}
+
+
+%%%%%%%%%%%%   All the preamble material:   %%%%%%%%%%%%
+
+\newcommand{\note}[4][]{\todo[author=#2,color=#3,size=\scriptsize,fancyline,caption={},#1]{#4}} % default note settings, used by macros below.
+\newcommand{\mans}[2][]{\note[#1]{mans}{lightblue!40}{#2}}
+\newcommand{\Mans}[2][]{\mans[inline,#1]{#2}\noindentaftertodo}
+
+
+\title{Prospectus: \\ Integrating Machine Learning into Language Documentation and Description}
+
+\author{Sarah}{Moeller}
+
+\otherdegrees{B.A., Thomas Edison State College, 2002 \\
+	      M.A., Dallas International University, 2010 \\
+	      M.A., University of Colorado Boulder, 2020}
+
+\degree{Doctor of Philosophy}		%  #1 {long descr.}
+	{Ph.D., Linguistics and Cognitive Science}		%  #2 {short descr.}
+
+\dept{Department of}			%  #1 {designation}
+	{Linguistics \\
+	and \\
+	Institute of Cognitive Science}
+
+\advisor{Prof.}				%  #1 {title}
+	{Mans Hulden}			%  #2 {name}
+
+\reader{Prof.~Martha Palmer}		%  2nd person to sign thesis
+\readerThree{Prof.~Andrew Cowell}		%  3rd person to sign thesis
+
+\abstract{  \OnePageChapter	% because it is very short
+
+	Often the abstract will be long enough to require
+	more than one page, in which case the macro
+	``$\backslash$OnePageChapter'' should {\it not}
+	be used.
+
+	But this one isn't, so it should.
+	}
+
+\ToCisShort	% use this only for 1-page Table of Contents
+
+\LoFisShort	% use this only for 1-page Table of Figures
+% \emptyLoF	% use this if there is no List of Figures
+
+\LoTisShort	% use this only for 1-page Table of Tables
+% \emptyLoT	% use this if there is no List of Tables
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%       BEGIN DOCUMENT...         %%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\input macros.tex
+\input 1_introduction.tex
+\input 2_litreview.tex
+\input 3_datamodels.tex
+\input 4_body.tex
+\input 5_timeline.tex
+\input 6_conclusion.tex
+
+%%%%%%%%%   then the Bibliography, if any   %%%%%%%%%
+	% or "siam", or "alpha", etc.
+%\nocite{*}		% list all refs in database, cited or not
+%\begin{thebibliography}
+\bibliographystyle{coling}
+\bibliography{refs}		% Bib 
+%\end{thebibliography}
+%database in "refs.bib"
+
+%%%%%%%%%   then the Appendices, if any   %%%%%%%%%
+%\appendix
+%\input appendixA.tex
+%\input appendixB.tex
+
+
+\end{document}
+

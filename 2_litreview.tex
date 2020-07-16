@@ -1,0 +1,231 @@
+\chapter{Related Work}
+\label{chap:litreview}
+
+This chapter summarizes linguistic and NLP literature in order to establish the role that interlinearization and morphological analysis has played in language documentation and description and how NLP work is related. The proposed research will explore ways to integrate machine learning, specifically for automating the three initial tasks of interlinearization (morpheme segmentation, morpheme glossing, and free translation) as well as inflectional paradigm induction. 
+
+\section{Language Documentation and Description}
+\label{sec:LDD}
+
+\Mans{I think we want to double-check the citation format. By default with this style we get the mathy one not used so much in NLP/Linguistics. Maybe you can use natbib or even the ACL style for citations?}
+
+The activities that constitute language documentation and language description fieldwork are not clearly distinguished. Himmelmann \cite{himmelmann_documentary_1998} defines language documentation as ``a comprehensive and representative sample of communicative events [that are] as natural as possible.” Woodbury \cite{woodbury_defining_2003} defines it similarly as “comprehensive and transparent records supporting wide ranging scientific investigations of the language.” Language description can be defined as work that analyzes language documentation to create “systematic presentations of the phonology, morphology, syntax, and semantics of the language” \cite{bird_machine_2012}. Emphasis on endangered languages over the past three decades has established modern field methods for recording and analyzing data \cite{bowern_linguistic_2008,czaykowska-higgins_research_2009,lupke_data_2010,vallejos_integrating_2014,rice_community-based_2017}. However, the specific activities that divide the two subfields are not rigid. Therefore, the proposed research and this prospectus rarely distinguish the two. Instead, they will refer to the two together as “language documentation and description” or “documentary and descriptive linguistics”. 
+
+The workflow of language documentation and description activities is not standardized, although most projects seem to follow a similar sequence.  One common sequence of activities was described by Bird and Chiang \cite{bird_machine_2012} and is clarified below. They classify this workflow under language documentation, but each subsequent task progressively encompasses more description than documentation.
+
+\begin{enumerate}
+    \item Collect (audio/video recordings of) naturally occurring speech
+    \item a) Transcribe and b) translate the recordings
+    \item Perform basic morphosyntactic analysis of the transcription by segmenting the morphemes and creating morphological glosses and/or a lexicon
+    \item Elicit morphological paradigms that will allow the study of specific phenomena and/or reveal underlying patterns
+    \item Prepare a grammar of the language i.e. descriptive reports that outline how the language is structured
+\end{enumerate}
+
+A primary output of this workflow is interlinear glossed texts (IGT). The process of creating IGT is called interlinearization. Interlinearization takes center stage after recorded speech has been transcribed. It moves the workflow beyond simple collection of data but still serves as a ``preprocessing step'' \cite{moon_unsupervised_2009} to the description of morphology, syntax, etc. It comprises any number of annotation tasks that enrich the data with analytic information which is added on lines under the original transcribed text. Several common lines of annotation are shown in Figure \ref{fig:IGTillus}. The lines can be added in any order, but translations (task 2a) morpheme boundaries and morpheme glosses (task 3) are usually added first. Therefore, in this research the term ``interlinearization'' usually denotes three annotation tasks: 1) identifying morpheme boundaries (\emph{morpheme segmentation}), 2) labeling each morpheme with its lexical meaning or morphosyntactic function (\emph{glossing}), and 3) providing \emph{free translations} of sentences in a language of wider communication. 
+
+%IGT lay the foundation for published literature such as reference grammars and dictionaries.
+%This process makes documentatioan and description difficult to distinguish because it does not clearly fall under either subfield. 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=16cm]{figs/IGT-illus.png}
+    \caption[Interlinearization]{Interlinearization. Interlinear glossed texts add lines of annotation to the original text.}
+    \label{fig:IGTillus}
+\end{figure}
+
+Another output of this workflow is a collection of morphological inflectional patterns for several lemma. Inflectional patterns, or paradigms, are elicited for specific lemmas  (task 4) because complete paradigms are rarely found in IGT. These lemma-specific paradigms are used to infer general rules of inflection. These rules become part of the systematic description of the language's morphological structure.
+
+
+\section{Natural Language Processing (NLP) for Low Resource Languages}
+
+Though the line between language documentation and description may not be clear, one thing is clear: current methods do not scale up well. Documentary and descriptive projects often archive only partially accessible corpora simply because funding and time are not sufficient to complete interlinearization \cite{cox_taking_2019}. Current methods assume primarily manual work which is prone to human error and inconsistencies. Baldridge, Palmer, and others note that manual work is extremely inefficient \cite{Baldridge06,baldridge_how_2009,palmer_semi-automated_2009}. They found it is repetitive, monotonous, costly, and time-consuming \cite{duong_natural_2017,he_humanloop_2016}. For example, it can take anywhere from 20 to 100 hours to transcribe (task 2a) a single hour of speech \cite{seifart_language_2018}. It is reasonable to assume that interlinearization (tasks 2b and 3) and eliciting morphological paradigms (task 4) each require  significantly more time than transcription.  
+%The problems with manual annotation is not limited to field linguistics; even a project for natural language processing required three years to annotate just one layer of the Penn Treebank \cite{taylor_penn_2003}. 
+%accessible endangered and low-resource language data increases slowly and is plagued by quality issues. 
+
+A few software tools specially designed for linguistic annotation do provide limited automated assistance for language documentation and description. The two most popular are ELAN \cite{auer_elan_2010} and FLEx \cite{rogers_review_2010}. Examples of their interlinearization interfaces are shown in Figures \ref{fig:FLEX} and \ref{fig:ELAN}. These tools perform automatic morpheme segmentation and glossing by implementing morphological parsers. The parsers require morphological rules that are created by hand. Such parsers do not generalize to new data. In addition to a parser, FLEx has a feature that copies morpheme boundaries and glosses onto new words, but only if the words are identical to words that were previously annotated by hand. Neither tool incorporates machine learning. 
+
+\begin{figure}
+    \centering
+    \includegraphics[width=8cm]{figs/FLExIGT.png}
+    \caption[FLEx]{User interface for interlinearization in Fieldworks Language Explorer (FLEx).}
+    \label{fig:FLEX}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=15cm]{figs/ELAN.png}
+    \caption[ELAN]{User interface for interlinearization in ELAN.}
+    \label{fig:ELAN}
+\end{figure}
+
+%The issues due to manual methods in language documentation and description could be avoided by integrating machine learning into the workflow. With the exception of audio/video recording, each task in Chiang and Bird’s workflow could be sped and improved with better automated assistance. Machine learning assistance could generate many more hours of transcribed speech in less time and many more lines of annotated text with fewer inconsistencies. Unfortunately, machine learning is not accessible to linguists without specialized training in NLP.
+
+%Such annotated text supports deeper linguistic inquiry, the expansion of NLP, and the development of human language technology for low-resource languages.
+
+%Since 2016 the CoNLL-SIGMORPHON shared tasks increased their list of languages from a couple dozen to over 100. This list is good benchmark of how much NLP interest in low-resource languages has grown recently. 
+
+A recent growth of interest in low-resource languages\footnote{According to LORELEI (a US-government funded project for building language technology in low resource languages), low-resource languages refers to languages for which no automated human language technology exists, typically because of a lack of available linguistic resources. Other terms are sometimes used in this paper: ``under-described languages'' are languages with minimal published descriptive linguistic resources, what has been called ``very scarce-resource language'' \cite{duong_natural_2017}; whereas ``under-documented languages'', or Duong's ``extremely scarce-resource languages,'' lack sufficient raw or annotated data to write a full descriptive grammar; ``endangered languages'' are predicted to have no native speakers within a generation or two and most are under-documented and/or under-described. These distinctions are rarely crucial in the proposed research and may be used interchangeably.} 
+has developed models and methods that improve machine learning results with limited data. This includes machine translation \cite{abbott_towards_2018,gu_universal_2018,shearing_improving_2018,al_mumin_neural_2019,duh_benchmarking_2020}, computational morphology \cite{ruokolainen_supervised_2013,baumann_using_2014,micher_improving_2017,moeller_improving_2019}, syntactic parsing \cite{baldridge_learning_2013,duong-etal-2015-low,duong_natural_2017}, and automatic speech recognition \cite{adams_automatic_2017,anastasopoulos_computational_2019}. Several experiments have demonstrated that these models and methods are both practicable and beneficial for language documentation and description. Machine learning has already been leveraged to develop tools to automate transcription of documentary and descriptive audio recordings. A notable example is ELPIS \cite{foley_elpis_2018}, an online tool that includes an  user interface accessible to those with no programming background. Machine translation (MT) has been applied to documentary data, using the output of an automatic speech recognition system as input to the MT system \cite{anastasopoulos_unsupervised_2016,duong_attentional_2016}. The potential for integrating machine learning into interlinearization has been clearly demonstrated \cite{baldridge_how_2009,palmer_semi-automated_2009,palmer_computational_2010,xia_enriching_2016}. For example, Felt \cite{felt_improving_2012} found that automated ``pre-annotation'' improves human annotators' accuracy if the machine learning model achieves only 60\% accuracy and significantly speeds human annotation with an accuracy of 80\%. In the area of morphological paradigm induction, the annual CoNLL-SIGMORPHON shared tasks \cite{cotterell_sigmorphon_2016,cotterell_conll-sigmorphon_2017,cotterell_conllsigmorphon_2018,mccarthy-etal-2019-sigmorphon} is developing many successful methods to improve learning of inflection with limited training data. 
+
+Although NLP interest in low-resource languages has grown noticeably in the past few years, it is not a new area of research. Since the late 20\textsuperscript{th} century, NLP has taken several approaches to low-resource languages. These can be classified as either rule-based (i.e. finite state transducers) \cite{cotterell_labeled_2015,forsberg_learning_2016,moeller_neural_2018,moeller_improving_2019} or machine learning which ``learn'' rules from data. Machine learning can be further divided into three types identified by whether the training data has been annotated completely (supervised) \cite{bergmanis_training_2017,sudhakar_experiments_2017,makarov_align_2017,liu_morphological_2018,makarov_uzh_2018}, partially (semi-supervised) \cite{ahlberg_semi-supervised_2014}, or not at all (unsupervised) \cite{moon_unsupervised_2009,palmer_computational_2010,kirschenbaum_unsupervised_2012,soricut_unsupervised_2015}. At first glance, unsupervised learning seems more promising for language documentation and description since it does not require annotated data as input. However, although supervised learning requires annotated data, it needs much less data than unsupervised learning and almost always yields better results  \cite{ruokolainen_supervised_2013,ahlberg_semi-supervised_2014,cotterell_labeled_2015}. 
+%Supervised approaches developed later than unsupervised learning, due in part to computer memory limitations \cite{hammarstrom_unsupervised_2011}. Supervised neural networks, or deep learning, developed even later.
+
+\Mans{Also, unsupervised learning (with the possible exception of segmentation) is really all about clustering. What a language documentation project would do with that is unclear. I can imagine perhaps a morphological clustering of forms (hopefully under the same lemma) could be useful as a first step in trying to produce paradigms, but otherwise unsupervised learning is really limited in this context.}
+
+The proposed research will use supervised machine learning. Supervised learning is trained on a ``gold standard'' of annotated data. It learns the patterns of the annotation labels. A successful model can label new data instances with high accuracy. The new data instance might be a morpheme segment, morpheme gloss, or translation of a word or phrase that was not present in the training data. 
+
+\Mans{Semi-supervised learning deserved a note. What if you could take a small number of annotated data and make clever use of the unannotated data to boost your accuracy? That could potentially be helpful. I haven't seen this done with neural models yet (although Ling \& I are working on it), but e.g. Ahlberg, Forsberg, Hulden (2014) is such an approach.}
+%Having a gold standard makes supervised machine learning qualitatively different from unsupervised learning since unsupervised learning classifies data points into categories or classes.  
+
+Until the mid 2010s, most machine learning models were feature-based, illustrated in Figure \ref{fig:Features-ML}. A human expert must determine optimal features.\mans{I think what you want to say is that until the 2010s the feature-based models all had hand-designed features.} An feature function for a task like morpheme segmentation might be 1) the whole word, 2) the position of the word in the sentence, 3) surrounding words or morphemes, 4) the POS tag of the previous morpheme/word. These features are assigned weights during training.\mans{\ldots to achieve optimal performance according to some objective function such as classification accuracy.} These weights help the model pay attention to the features that are most helpful for an accurate output. For example, in a morpheme segmentation task where one chosen feature is the previous word and the previous word is some form of the English ``to be'' verb, and the target word ends in ``ing'', then the CRF might give a high weight to the previous word so that the model pays attention to it when deciding how to segment a word ending in ``ing''. 
+%If glossing is treated as a separated task, then the CRF might decide a word-final ``s'' marks a plurality---not 3rd person singular simple present tense---if during training it decided to give high weight to the POS tag. 
+
+The performance of feature-based models, such as the CRF and SVM (see Chapter \ref{chap:datamodels}), relies heavily on the choice of features. This could be a drawback for under-described languages, because if little linguistic description is available, how does one know which features are optimal for that language? Fortunately, soe feature-based models have been shown to perform reasonably well using language-independent features \cite{ruokolainen_comparative_2016,moeller_automatic_2018}.  
+
+\begin{figure}[h]
+\label{fig:Features-ML}
+\begin{center}
+\includegraphics[width=0.95\columnwidth]{figs/Features-ML.PNG}
+\caption[Feature-based machine learning]{Feature-based machine learning.}
+\end{center}
+\end{figure}
+
+\Mans{I think the below paragraph has the appropriate depth. However, maybe the crucial role of feature ``learning'' through having hidden layers gets lost in there somewhere. That is really the key part and why people say that NNs don't require manual feature design - you do require feature design (e.g. words), but they can be simpler and the NN can figure out a better representation for them because of the embedding layers. Could cite Bengio's language model paper from 2003 ``A Neural Probabilistic Language Model'' which contains the key insight ``learning a distributed representation for words which allows each training sentence to inform the model about an exponential number of semantically neighboring
+sentences''}
+Currently, neural networks, also known as end-to-end learning\mans{Well, NNs {\it allow for} end-to-end learning, but it's not really the same thing} or deep learning, are dominating NLP.\mans{I think a citation is warranted here, e.g. Goldberg's book.} Even though they outperform older, feature-based models on almost all tasks, they did not become popular until the mid-2010s because they require greater computing power and train more slowly for some tasks \cite{cotterell_cross-lingual_2017}. Neural networks, illustrated in Figure \ref{fig:DL}, refers to a family of supervised machine learning models that are composed of layers of statistical units, illustrated in Figure \ref{fig:DL}. Hidden layers create intermediate representation of the data. These essentially serve the function of feature engineering in non-neural machine learning. Each unit in each layer is connected to each unit in the adjacent layers. Vector representations of the data are received by an input layer and transformed in ``hidden'' layers. The hidden layers feed into a final logistic function layer (i.e. softmax) that outputs a prediction of each possible class as a probability between 0 and 1. The connections between layers are represented by learnable weights; the higher the weight the more influence a unit has on the result. Since deep learning is supervised\footnote{Deep learning morphological segmentation has been performed on unsupervised texts with some success \cite{wang_morphological_2016}} the weights need to be adjusted with feedback from the gold standard. This is done via stochastic gradient descent\mans{often done with SGD, or some similar optimization algorithm (can cite Goldberg here too)} with backpropagation from the annotated data.\mans{Could cite LeCun et als Nature ``Deep Learning'' article.}
+
+\begin{figure}[h]
+\begin{center}
+\includegraphics[width=0.95\columnwidth]{figs/DL.PNG}
+\caption[Neural Networks]{Neural Networks.}
+\label{fig:DL}
+\end{center}
+\end{figure}
+
+%Many flavors of neural machine learning exist and different models work best for different tasks. Encoder-decoders neural networks work well for mapping one sequence to another by encoding the input sequence of symbols (e.g. the letters of a word) and decoding it as another sequence of symbols (e.g. glosses). Encoder-decoders can be used for for morphological tagging \cite{heigold_extensive_2017}, segmentation (including low resource settings) \cite{kann_fortification_2018}, paradigm completion \cite{cotterell_conllsigmorphon_2018}, and translation. For example, morphological generation produces fully inflected forms from morphosyntactic or contextual information \cite{cotterell_conll-sigmorphon_2017} or completes morphological paradigms \cite{malouf_generating_2016}. 
+
+Until recently, neural networks had the same great disadvantage for language documentation and description that unsupervised learning has. Good performance required a great deal of data. Until recently data from language documentation and description would have been considered inadequate to train neural networks \cite{duong_natural_2017}.
+%Although neural models such as the Transformer generally outperform non-neural models, this does not necessarily hold true. 
+Even now, a non-neural model can usually outperform a random neural model\mans{What do you mean by ``random neural model''?} because low-resource settings do not always respond to methods that are usually effective for improving neural models, such as fine-tuning hyperparameters or adding hidden layers. It has been found that these may actually reduce accuracy with smaller amounts of data \cite{cotterell_conll-sigmorphon_2017,popel_training_2018}. Pre-set or recommended hyper-parameters in NMT toolkits such as OpenNMT have been optimized for large datasets with millions of sentences and tend to hurt performance in low-resource settings. Neural models can be difficult to optimize and tune for low resource settings \cite{popel_training_2018}.
+
+New methods are being developed that overcome neural models' dependence on large corpora. Methods include fine-tuning to the specific task and input data, training intermediate steps, or augmenting the training data.
+%With such methods, neural models are beginning to outperform feature-based models even in low-resource settings.
+van Biljon et al. \cite{van_biljon_optimal_2020} determined that shallow- or medium-depth size transformers are better with limited data, for example 3 encoder and 3 decoder layers. An intermediate training step might include first training the model to produce abstract underlying forms of morphemes (e.g. ``impossible'' $\rightarrow$ ``in-possible'' $\rightarrow$ ``\textsc{neg}-possible'') \cite{liu_morphological_2018,moeller_improving_2019}. For machine translation an intermediate step might be translating from target language glosses rather than the source text. 
+
+Another successful method is augmenting the training data. 
+Data augmentation can be done with artificial word forms \cite{liu_morphological_2018} or with information extracted from other resources such as grammars and dictionaries. Leveraging multiple resources to train machine learning models is not impractical if language documentation and description projects have been undertaken in the language. Traditionally, documentary and descriptive projects produce some form of the Boasian triad, illustrated in Figure \ref{fig:Triad}. 
+
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[width=8cm]{figs/Triad.PNG}
+\caption[The Boasian Triad]{The Boasian Triad is a grammatical description, a bilingual lexicon, and a corpus of IGT.}
+\label{fig:Triad}
+\end{center}
+\end{figure}
+
+
+\section{Morphological Analysis}
+
+Morphological analysis is a key activity in language documentation and description. This is the study of word-building properties and their accompanying (morpho-)syntactic phenomena. Historically, computational linguists and ``paper-and-pencil linguists'' have taken sometimes seemingly incompatible approaches to morphology \cite{karttunen_2005}.\mans{Could cite Sproat (1992) ``Morphology and Computation'' as well.} Yet, despite their out-of-sync approaches, both computational linguistics and ``traditional'' linguistics benefit from the analysis of a language's morphology \cite{cotterell_labeled_2015}. Morphological analysis is particularly important when working with morphologically complex languages.  Languages that build words from multiple morphemes or via significant morphophonological changes produce a high number of inflected and compound words which appear to the machine as brand new, unrelated words \cite{dreyer_discovering_2011,goldsmith_computational_2017,hammarstrom_unsupervised_2011,kann_neural_2016,ruokolainen_supervised_2013}. These include agglutinating morphologies (common in central and north Asia, South America, central and southern Africa, Australia), polysynthetic (North America, the Far East of Russia), or non-concatenative (north Africa and the Middle East, southeast Asia). NLP systems that account for morphology can reduce data sparsity caused by an abundance of individual word forms \cite{mccarthy-etal-2019-sigmorphon,vylomova2020sigmorphon} and help mitigate bias in training data for natural language processing (NLP) systems \cite{zmigrod-etal-2019-counterfactual}. Such systems have often been limited to languages with publicly available structured data, i.e. languages for which tables containing inflectional patterns can be found, for example, in online dictionaries like Wiktionary.\footnote{\url{https://www.wiktionary.org}} Unfortunately, this is not available for many of the world's languages. The proposed research will leverage unstructured data produced by documentary and descriptive field projects.
+%This limits the development of NLP systems for morphology to languages for which morphological information can be easily extracted. 
+%
+
+Morphological analysis can be separated into two core tasks \cite{cotterell_labeled_2015,hammarstrom_unsupervised_2011,nicolai_morphological_2017,palmer_semi-automated_2009}. The first task is identifying morphemes by determining their shapes and marking boundaries between them, as was done for the Lezgi noun in Example \ref{ex:Lezgi1b}. This first task is known as (unlabeled) morpheme segmentation \cite{creutz_unsupervised_2007,snyder_unsupervised_2008}. The second task is deducing each morpheme's meaning, known as parsing, or sometimes as morphological analysis by itself.\footnote{Nicolai and Kondrak \cite{nicolai_morphological_2017} subdivide morphological analysis slightly differently, making a distinction between morphological “analysis” and morphological tagging. They describe morphological analysis as a combination of segmentation and labeling, though they later state that ``morphological tagging can be performed as a downstream application of morphological analysis'' (p. 211), thereby adhering to the same two distinctions described above.} This single step is known in linguistics as glossing, and in computational linguists as labeled morpheme segmentation or, merely, labeling, or tagging. Together these two tasks are a significant part of interlinearization. 
+
+\begin{singlespace}
+%\pex<withparts> %% "main" example needs a tag
+%\label{ex:Lezgi1}
+%\a<first> %% First part with a tag
+%\begingl
+%\gla pa\c{c}ahdin //
+%\glb pa\c{c}ah-di-n //
+%\glc king-\textsc{obl}-\textsc{gen} //
+%\glft `king's'//
+%\endgl
+
+%\a<second> \ljudge{*} %% Second part
+%\begingl %% start glosses
+%\gla \textbf{syá} luto/lwito//
+%\glb \textsc{di} 11ashes//
+%\endgl
+%\xe
+
+\pex<Lezgi1>   
+\label{ex:Lezgi1}
+\a<a> pa\c{c}ahdin
+\label{ex:Lezgi1a}
+\a<b> pa\c{c}ah-di-n
+\label{ex:Lezgi1b}
+\a<c> king-\textsc{obl}-\textsc{gen}
+\label{ex:Lezgi1c}
+\a `king's'
+\label{ex:Lezgi1d}
+\xe
+
+\end{singlespace}
+
+In documentary and descriptive linguistics, the two tasks are rarely distinguished because they are typically tackled simultaneously. It is more likely that general linguistics would define morphological analysis as all and any tasks related to identification of morphemes, their meanings, as well as the description of a language’s systematic rules of morphology. In computational morphology, the two tasks are often tackled separately, if both are attempted. Some computational models, however, have taken a tip from language documentation and description and joined the two tasks
+%learning a probabilistic model of the language’s morphotactics, i.e. the rules about the ordering and co-occurrence of morphemes on a word. It also yields higher accuracy in some cases. 
+\cite{cotterell_labeled_2015}. When the two tasks are done separately, parsing usually refers to labeling each segmented morpheme with a gloss, for example, the \textsc{obl} (oblique stem) and \textsc{gen} (genitive case) in (\ref{ex:Lezgi1c}). 
+Parsing does not require morpheme segmentation. 
+%It is possible to recognize all elements of a word’s meaning without identifying the individual morphemes that contribute each element. 
+For example, in CoNLL-SIGMORPHON shared tasks, such as illustrated in (\ref{ex:ConLL-T2}), words are parsed without identifying morpheme boundaries.\footnote{A field linguist (p.c.) claims the reverse is possible: non-linguist native speakers can segment words into minimally meaningful units without being able to identify the accurate morphosyntactic function of all units.}
+
+\begin{singlespace}
+\pex<ConLL-T2>   
+\label{ex:ConLL-T2}
+\a<a> \textbf{INPUT:}  The \rule{1cm}{0.15mm} are barking.  \hspace{5 mm} \textit{dog}
+\label{ex:ConLL-T2a}
+\a<b> \textbf{OUTPUT:} dogs
+\label{ex:ConLL-T2b}
+\xe
+\end{singlespace}
+
+\Mans{Why is the cloze task example here?}
+
+\section{Inflectional Paradigm Induction}
+
+Morphology includes the inference of rules that govern a language’s word building strategies and the discovery of how word forms are systematically related through derivation or inflection \cite{roark_computational_2007}. Therefore, Virpioja et al. \cite{virpioja_empirical_2011} add a third task to morphological analysis: identification of morphologically related words through patterns of inflection.
+
+Durett and DeNero \cite{durrett_supervised_2013} claim that the inference of inflectional patterns must be based on three assumptions. First, each lexical category is dictated by a subsystem of rules. Russian nouns, for example, can be generalized into three simplified patterns of inflection, shown in Table \ref{tab:RuParadigm}. Lexemes that adhere to the same pattern are grouped into inflectional classes (sometimes called ``declensions'' for nouns and adjectives and ``conjugations'' for verbs). The patterns themselves are known as inflectional paradigms. Second, inflectional changes are triggered by context and, therefore, the patterns can be inferred from context. Descriptive studies look to phonology or else to both phonological structure and the semantic content of the lexeme for the triggering context. Computational models, due to the nature of their input, look to orthographic context. The third assumption is that each stem morpheme is inflected consistently according to the inflectional class it belongs to, plus any idiosyncrasies of the stem.
+
+Computational models have successfully learned frequent and regular paradigmatic patterns with high accuracy even in low-resource settings \cite{hammarstrom_unsupervised_2011,durrett_supervised_2013,ahlberg_semi-supervised_2014}. Most early work on paradigm induction applied unsupervised learning to concatenative morphology \cite{goldsmith_unsupervised_2001,chan_learning_2006,monson_paramorfinding_2007b}. Semi-supervised models have been more recently applied on concatenative and non-concatenative languages \cite{dreyer_discovering_2011,durrett_supervised_2013}. 
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=10cm]{figs/PCFP.PNG}
+\caption[Paradigm Cell Filling Problem]{Illustration of the Paradigm Cell Filling Problem \cite{silfverberg_encoder-decoder_2018} with Spanish verb paradigms.}
+\label{fig:PCFP}
+\end{center}
+\end{figure}
+
+Supervised learning has also been applied to inflectional morphology. Some work focuses on generating inflected forms, including work motivated by the Paradigm Cell Filling Problem (PCFP), illustrated in Figure \ref{fig:PCFP}. These studies attempt to model how new speakers infer the inflected forms they have not encountered \cite{dreyer_discovering_2011,ahlberg_paradigm_2015,malouf_generating_2016,silfverberg_encoder-decoder_2018}. Other work with supervised learning has attempted to induce inflectional paradigms from text. Paradigms have to be completed by finding overlapping patterns from several incomplete paradigms that are found in text. One method abstracts the longest common subsequence of characters in words and then clusters words with same or similar patterns  \cite{ahlberg_semi-supervised_2014,ahlberg_paradigm_2015}. This is illustrated in Figure \ref{fig:LCS}. Exceptions or irregularities in the paradigms can be accounted for by collapsing the similar patterns. The experiment has been quite successful for a few Indo-European languages (German, Spanish, Catalan, French, Galician, Italian, Portuguese, Russian), as well as Maltese and Finnish.
+
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[width=10cm]{figs/Ahlberg2015-LCS.PNG}
+\caption[Ahlberg et al. (2015)]{Ahlberg et al. (2015): Inducing paradigms. The longest common subsequences (LCS) \textit{rng} or \textit{swm} are extracted (step 1) and represented as \textit{x\textsubscript{1}} and \textit{x\textsubscript{2}} which replace the LCS (step 2). Words with the same inflectional patterns will be identical (step 3) and can be generalized into paradigms (step 4). The remaining characters \textit{i}, \textit{a}, \textit{u} are assumed to be inflectional affixes.}
+\label{fig:LCS}
+\end{center}
+\end{figure}
+
+Monson et al. \cite{monson_paramorfinding_2007b} give two guiding principles for computational paradigm induction. One is that inflected forms of a lemma will look similar to each other. This principle does not always hold because languages abound with exceptions. Also, inflection can be suppletive (e.g. \textit{am} vs. \textit{are}, etc. in Table \ref{tab:EngParadigm}). However, the principle holds often enough to serve as a solid working assumption.  
+
+The second principle is that ``in any given corpus, a particular lexeme will likely not occur in all possible inflected forms''.  Even with a large corpus of IGT, attempts to recreate paradigms like Table \ref{tab:RuParadigm} will result in empty gaps. This is why the language documentation and description workflow listed in section \ref{sec:LDD} explicitly includes elicitation of morphological paradigms despite the language documentation's emphasis on naturally occurring speech \cite{lupke_data_2010,boerger_language_2016}. In fact, it is possible that certain forms may never occur in natural language even though they are grammatically possible \cite{silfverberg_encoder-decoder_2018}. Even if it is possible to find all the inflected forms of very frequent lexemes, frequent words often follow irregular patterns, as, for example, does the English ``be'' verb as shown in Table \ref{tab:EngParadigm}. 
+
+\begin{table}[h!]
+    \begin{center}
+    \begin{tabular}{l|c|c|c|c}
+      & \multicolumn{2}{c}{\textbf{present}} & \multicolumn{2}{|c}{\textbf{past}} \\
+      \cline{2-5}
+       & \textbf{sing.}  & \textbf{pl.} & \textbf{sing.}  & \textbf{pl.} \\
+       \hline
+      \textbf{1 person}  & am & are & was & were \\
+      \textbf{2 person} & are & are  & were & were  \\
+      \textbf{3 person} & is & are & was & were \\
+    \end{tabular}
+    \caption[Inflectional paradigm of the English verb ``to be'']{Inflectional paradigm of the English verb ``to be''. 
+    %This verb has more inflected forms than any other English lemma, with 6 cells and four unique word forms, but is quite small compared to paradigms in many other languages.
+    }
+    \label{tab:EngParadigm}
+    \end{center}
+\end{table}
