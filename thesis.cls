@@ -52,8 +52,8 @@
 
 \DeclareOption{fleqn}{ \PassOptionsToClass{fleqn}{report} }
 \DeclareOption{leqno}{ \PassOptionsToClass{leqno}{report} }
-\DeclareOption{openbib}{ \PassOptionsToClass{openbib}{report} }
-\DeclareOption{natbib}{ \PassOptionsToClass{natbib}{report} }
+%\DeclareOption{openbib}{ \PassOptionsToClass{openbib}{report} }
+%\DeclareOption{natbib}{ \PassOptionsToClass{natbib}{report} }
 \DeclareOption{draft}{ \PassOptionsToClass{draft}{report} }
 \DeclareOption{final}{ \PassOptionsToClass{final}{report} }
 \DeclareOption{openright}{ \PassOptionsToClass{openright}{report} }
@@ -333,18 +333,18 @@
 	\setcounter{secnumdepth}{\value{th@SecNum}}
 % Redefine the bibliography command here, just in case someone
 % uses a custom *.sty file that redefines bibliography command
-	\let\th@OldBib\thebibliography
-	\let\endth@OldBib\endthebibliography
-	\renewenvironment*{thebibliography}[1]{
-		\begin{th@OldBib}{#1}
-		\ULforem%  set \em to underline
-		\begin{singlespace}
-		\addcontentsline{toc}{part}{\bibnameToC}
-	}{
-		\end{singlespace}
-		\EmphReset% set \em back to the user-specified default.
-		\end{th@OldBib}
-	}
+	%\let\th@OldBib\thebibliography
+	%\let\endth@OldBib\endthebibliography
+	%\renewenvironment*{thebibliography}[1]{
+	%	\begin{th@OldBib}{#1}
+	%	\ULforem%  set \em to underline
+	%	\begin{singlespace}
+	%	\addcontentsline{toc}{part}{\bibnameToC}
+	%}{
+	%	\end{singlespace}
+	%	\EmphReset% set \em back to the user-specified default.
+	%	\end{th@OldBib}
+%	}
 }
 
 %%%%%%%%%%% ADDITIONAL STUFF:
@@ -1083,7 +1083,7 @@
 			\setlength{\itemsep}{0pt}}
 		\item \th@revname\ (\th@degree)
 		\item \th@title
-        \item Thesis directed by \th@advisortitle\ \th@advisor
+       \item Thesis directed by \th@advisortitle\ \th@advisor
 	\end{list}
 	\par
 	\vspace*{4\parsep}

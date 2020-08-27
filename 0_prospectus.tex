@@ -1,3 +1,6 @@
+%\RequirePackage{etoolbox}
+%\patchcmd{\bibliographystyle}{#1}{acl}{}{}
+
 \documentclass[defaultstyle,11pt]{thesis}
 
 \usepackage{amssymb}		% to get all AMS symbols
@@ -8,9 +11,10 @@
 \usepackage{enumitem}
 \usepackage{expex}
 \usepackage{multirow}
+\usepackage{multicol}
 \usepackage{todonotes}
 \usepackage{natbib}
-
+%\setcitestyle{authoryear}
 
 %%%%%%%%%%%%   All the preamble material:   %%%%%%%%%%%%
 
@@ -43,12 +47,7 @@
 
 \abstract{  \OnePageChapter	% because it is very short
 
-	Often the abstract will be long enough to require
-	more than one page, in which case the macro
-	``$\backslash$OnePageChapter'' should {\it not}
-	be used.
-
-	But this one isn't, so it should.
+Machine learning can provide automated assistance to document and describe endangered languages with speed and accuracy, but linguists must know how to make effective use of it. The proposed dissertation research will focus on effective integration of machine learning into language documentation and description. It will look specifically at integration into morphological annotation and analysis. It will investigate methods for achieving optimal results and assistance from machine learning.
 	}
 
 \ToCisShort	% use this only for 1-page Table of Contents
@@ -71,13 +70,13 @@
 \input 3_datamodels.tex
 \input 4_body.tex
 \input 5_timeline.tex
-\input 6_conclusion.tex
+%\input 6_conclusion.tex
 
 %%%%%%%%%   then the Bibliography, if any   %%%%%%%%%
 	% or "siam", or "alpha", etc.
 %\nocite{*}		% list all refs in database, cited or not
 %\begin{thebibliography}
-\bibliographystyle{coling}
+\bibliographystyle{acl_natbib_nourl}
 \bibliography{refs}		% Bib 
 %\end{thebibliography}
 %database in "refs.bib"

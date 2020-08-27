@@ -8,19 +8,22 @@ This study will also determine the best models to be used in the second study (S
 
 The study will address two sets of questions.
 
-\begin{enumerate}
-    \item How might the integration of machine learning be affected by choice of segmentation strategy? To what extent does the choice of surface segmentation versus canonical segmentation affect machine learning of segmentation and glossing?
-\end{enumerate}
-
+\item{} \textbf{Automating Segmentation and Glossing:} How do choices made during interlinearization (i.e. surface versus canonical segmentation, in/consistent morpheme boundaries, lack/presence of part of speech tags) affect machine learning results on morpheme segmentation and glossing? 
+     \begin{itemize}
+        \item To what extent do these choice affect the performance of a neural Transformer model compared to a Conditional Random Fields model? 
+        \item To what extent do they make a pipeline approach preferable to joint learning of morpheme boundaries and glosses?
+    \end{itemize}
+    
+\subsection{Segmentation Strategies}    
 Each machine learning system will be trained, tested, and compared on both (surface) morphs and (canonical) morphemes. Both canonical and surface segmentation are used in language documentation and description. In canonical segmentation, linguists provide ``underlying'' morphemes which allows them to ignore spelling changes triggered by surrounding phones. For example, the morpheme represented by the first two letters in``il-legal'' and ``in-capable'' would be canonically represented as ``in-''. In contrast, surface segmentation simply identifies morpheme boundaries between the letters in a word. 
 
 Comparing the performance on the same segmentation strategy across languages will indicate features of annotated data that might affect the results of integrated machine learning systems. Canonical segmentation gives more information about the language than surface segmentation. However, it requires thorough analysis of the language's allomorphy. 
 %, and it can be more difficult to do for non-linguist annotators. 
-Surface segmenation is generally easier for many segmentation algorithms. The algorithms are not usually tasked to learn allomorphy \cite{goldsmith_computational_2017}. They simply divide strings of text \cite{virpioja_empirical_2011}. In NLP, these surface segments are sometimes referred to as ``morphs'' and canonical segments can be distiguished as ``morphemes''. 
+Surface segmenation is generally easier for many segmentation algorithms. The algorithms are not usually tasked to learn allomorphy \citep{goldsmith_computational_2017}. They simply divide strings of text \citep{virpioja_empirical_2011}. In NLP, these surface segments are sometimes referred to as ``morphs'' and canonical segments can be distiguished as ``morphemes''. 
 %without regard to a morpheme’s potential relation to other morphemes 
 
 %, though some learning of morphophonogical changes may happen before segmentation 
-%For this reason, computational morpheme segmentation tends to perform better on concatenative morphology while computational modeling of non-concatenative morphology, particularly when it occurs in a language that also evinces concatenative morphology (common among Austronesian languages including Bahasa Alas and Natugu), remains ``arguably one of the main current challenges'' of computational morphology \cite{goldsmith_computational_2017}. 
+%For this reason, computational morpheme segmentation tends to perform better on concatenative morphology while computational modeling of non-concatenative morphology, particularly when it occurs in a language that also evinces concatenative morphology (common among Austronesian languages including Bahasa Alas and Natugu), remains ``arguably one of the main current challenges'' of computational morphology \citep{goldsmith_computational_2017}. 
 
 The corpora chosen for the research (Chapter \ref{chap:datamodels}) demonstrate different strategy choices.  Tsez has canonical segments and Arapaho has surface segments. The other languages, Manipuri, Natugu, Lezgi, and Alas were interlinearized with FLEx which uses both strategies simultaneously because of how the software interface works. These four languages will be used for this study because they allow comparison of the two segmentation strategies. 
 
@@ -36,13 +39,13 @@ Performance will be evaluated by a cross-validation on ten held out subsets of t
 The F$-1$-scores will indicate the number of morphemes that are correctly segmented and glossed. Levenshtein distance measures the difference between two strings by the minimum number of edits (insertions, deletions, substitutions). 
 
 \paragraph{Joint Segmentation and Glossing.}
-The CRF and the Transformer will perform joint segmentation and glossing. The dissertation will use a Transformer instead of a LSTM-based model that was used in the pilot study (see section \ref{sec:pilotseggls}). Since that study was publishe, the Transformer model outperformed the LSTM-based model and is now considered state-of-the-art. Wu et al. \cite{wu2020applying} found it achieved best results in low resource settings with character-level representation. 
+The CRF and the Transformer will perform joint segmentation and glossing. The dissertation will use a Transformer instead of a LSTM-based model that was used in the pilot study (see section \ref{sec:pilotseggls}). Since that study was publishe, the Transformer model outperformed the LSTM-based model and is now considered state-of-the-art. \cite{wu2020applying} found it achieved best results in low resource settings with character-level representation. 
 
 %However, the test language Lezgi has minimal morphophonological changes that may have affected the performance. For example, a null morpheme is never introduced and allomorphs almost always have the same number of letters. So the CRF, which labels each letter in a word, could easily learn to match a label to each letter in the original text even with canonical segmentation because there is no mismatch between the number of labels and the number of characters in a word. In languages with more complicated morphophonology it is not clear how well canonical segmentation can be learned or whether a CRF will still outperform a neural model. 
 
 The joint segmentation and glossing task will be treated as a problem of converting an input sequence of letters $\vect{x} = (x_1, \ldots, x_n)$ to an output sequence of symbols $\vect{y} = (y_1, \ldots, y_n)$. The input for both models will be a character-level representation of the text, represented as a string of space-delimited letters. The output will be a sequence of labels indicating the (canonical or surface) morpheme, and the morpheme's gloss. The combination of these two bits of information allows the system to perform segmentation and labeling/glossing simultaneously. The labels are specific to each morph or morpheme. %Each line will contain \textbf{one word or one sentence.?????}
 
-The input for the CRF will fed as one sentence per line, as shown in (\ref{ex:CRFin}) for surface segmentation. The input includes a feature function that will extract features from surrounding words, morphemes, and letters. The CRF will add BIO-labels to the output labels \cite{ramshaw1999}, one for each letter, as shown in (\ref{ex:CRFOut}). This is a type of labeling where each letter is declared either the beginning (B) of a morpheme or an inside (I) position. 
+The input for the CRF will fed as one sentence per line, as shown in (\ref{ex:CRFin}) for surface segmentation. The input includes a feature function that will extract features from surrounding words, morphemes, and letters. The CRF will add BIO-labels to the output labels \citep{ramshaw1999}, one for each letter, as shown in (\ref{ex:CRFOut}). This is a type of labeling where each letter is declared either the beginning (B) of a morpheme or an inside (I) position. 
 
 \begin{singlespace}
 \pex<CRFInOut>   
@@ -99,10 +102,10 @@ The CRF will be run as described above but the labels will only indicate morphem
 \subsection{Pilot Study: Segmentation and Glossing.}
 \label{sec:pilotseggls}
 
-This section summarizes a pilot study on approximately 3,000 tokens of the Lezgi IGT. It successfully performed experiments that support the proposed study. A detailed description is published in the proceedings of COLING 2018, entitled ``Automatic Glossing in a Low-Resource Setting for Language Documentation'' \cite{moeller_automatic_2018}. The pilot study compared (canonical) segmentation and glossing with three machine learning systems. It found that a CRF outperforms a neural neural LSTM-based model and a CRF+SVM pipeline system. 
+This section summarizes a pilot study on approximately 3,000 tokens of the Lezgi IGT. It successfully performed experiments that support the proposed study. A detailed description is published in the proceedings of COLING 2018, entitled ``Automatic Glossing in a Low-Resource Setting for Language Documentation'' \citep{moeller_automatic_2018}. The pilot study compared (canonical) segmentation and glossing with three machine learning systems. It found that a CRF outperforms a neural neural LSTM-based model and a CRF+SVM pipeline system. 
 %It found that the CRF achieved 90\% accuracy on segmentation and glossing when trained on only 3K tokens. 
 
-The first goal of the pilot study was to test one basic assumption of the proposed dissertation research: typical documentary and descriptive projects produce sufficient IGT data that any machine learning model can achieve helpful accuracy. Helpful accuracy would be scores above the 60\% and 80\% accuracy that Felt \cite{felt_improving_2012} found were benchmarks for improving and speeding human annotation. 
+The first goal of the pilot study was to test one basic assumption of the proposed dissertation research: typical documentary and descriptive projects produce sufficient IGT data that any machine learning model can achieve helpful accuracy. Helpful accuracy would be scores above the 60\% and 80\% accuracy that \cite{felt_improving_2012} found were benchmarks for improving and speeding human annotation. 
 %when employed for pre-annotation. 
 the F$_1$-scores achieved by all three systems (see Table \ref{tab:pilot1Results}) landed between these numbers, the pilot study supports the assumption. Documentary and descriptive IGT data be integrated as automated assistance to manual segmentation and glossing. 
 %The goal was for a model to complete at least 80\% of the segmentation and glossing correctly, leaving the most difficult, rare, and hopefully informative forms for a human to annotate. This goal was inspired by the Pareto Principle---the idea that 20\% of one's effort produces 80\% of one's results, and \textit{vice versa}. 
@@ -181,7 +184,7 @@ Results per gloss label. CRF-only.
 \end{center}
 \end{table}
 
-Three models were trained and compared. The CRF and SVM models were used as described in the previous section but the third model was an LSTM-based sequence-to-sequence neural network \cite{sutskever2014} with attention \cite{bahdanau2014}. 
+Three models were trained and compared. The CRF and SVM models were used as described in the previous section but the third model was an LSTM-based sequence-to-sequence neural network \citep{sutskever2014} with attention \citep{bahdanau2014}. 
 %All characters that are not part of a word (e.g. digits and punctuation) were eliminated in pre-processing. Incorrect glosses were identified and corrected by printing out tags and allowing a linguist to spot check the annotations to see if, for example, the distribution of POS tags appeared normal.
 %Every word had been tagged for part of speech. Since it seemed reasonable to expect that a native speaker educated in another language could quickly learn to recognize basic parts of speech in her own language, the feature-based models assumed that POS tags exist in language documentation and description data. (I have since found that this expectation is not reasonable for language documentation and description corpora. Therefore, POS tags will not be assumed to exist in the dissertation.) The Lezgi data included two POS tags for categories that are not basic. Participles and demonstrative pronouns are more abstract categories but their distinctions are kept simply because they had already been very consistently annotated. 
 %All but the neural model assume that (1) the data has been analyzed in FLEx, as shown in Figure \ref{fig:FLEX}, and exported as a FlexText XML format, shown in Figure \ref{fig:FLExTxt}, (2) words have been tagged for part of speech, (for the case study - verb, participle, adjective, adverb, noun/proper noun, particle, pronoun, demonstrative pronoun, and postposition), (3) morpheme segmentation and glosses are consistent, and (4) all affixes, but not stems, are glossed. 
