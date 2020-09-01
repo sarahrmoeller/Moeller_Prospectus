@@ -6,7 +6,7 @@
 The proposed research will address the question of machine learning integration by experimenting with documentary and descriptive data. Using field data will 1) reveal how current annotation methods affect the performance of NLP systems, 2) test the practicality of incorporating machine learning into the documentary and descriptive workflow, 3) demonstrate that IGT output of documentary and descriptive projects is sufficient to train machine learning models, and 4) enrich the selected data with the results of the experiments.
 %A consensus among LDD practitioners is that more documented data is always better to support linguistic description or revitalization. This holds true for NLP as well: the more training data, the better the results. Yet, the combination of funding limitations and lack of integrated machine learning assistance means that the amount of interlinearized data that LDD projects is almost always less than what is collected and transcribed. 
 
-The selected data corpora are representative of a range of typical documentary and descriptive projects. They consist of manually interlinearized glossed texts (IGT) in six under-documented and endangered languages. The data is summarized in Table \ref{tab:langs}.   
+The selected data corpora are representative of a range of typical documentary and descriptive projects. They consist of manually interlinearized glossed texts (IGT) from the seven under-documented and endangered languages presented in Table \ref{tab:langs}.   
 
 \bgroup
 \def\arraystretch{1.25}
@@ -16,17 +16,17 @@ The selected data corpora are representative of a range of typical documentary a
     \textbf{Language} & \textbf{ISO} & \textbf{Family} & \textbf{Morphology} & \textbf{Status} \\
     \hline
     Alas & btz & Austronesian & Agglutinative & Stable \\
-    \hline
+    %\hline
     Arapaho & arp & Algonquian & Polysynthetic & Severely Endangered  \\
-    \hline
+    %\hline
     Lamkang & lmk & Sino-Tibetan & Agglutinative & Endangered/Stable   \\
-    \hline
+    %\hline
     Lezgi & lez & Nakh-Daghestanian & Agglutinative & Vulnerable \\
-    \hline
+    %\hline
     Manipuri & mni & Sino-Tibetan & Agglutinative & Vulnerable  \\
-    \hline
+    %\hline
     Natügu & ntu & Austronesian & Isolating & Stable \\
-    \hline
+    %\hline
     Tsez & ddo & Nakh-Daghestanian & Agglutinative & Endangered   \\
     
 	\end{tabular}
@@ -38,7 +38,7 @@ The selected data corpora are representative of a range of typical documentary a
 
 \subsection{Languages} 
 
-The six languages are spoken across five continents.
+The selected languages are spoken across five continents.
 %, with populations of speakers ranging from a few hundred to about two million. 
 Published linguistic resources are limited, meaning all these languages are under-documented. Information about speaker population and endangerment status was retrieved from the \emph{Ethnologue} \citep{eberhard_ethnologue:2020} and \emph{Catalogue of Endangered Languages} \citep{elcat_2020}.
 %UNESCO’s \underline{Atlas of Endangered Languages} \citep{moseley_atlas_2010}.
@@ -72,35 +72,9 @@ The corpora were generously shared in the form of backup XML or CSV files. The r
 
 In most cases, more data was recorded and transcribed than could be interlinearized within the project's budget. Only the Arapaho and Tsez corpora can be considered completed (though missing annotations were found in both during preprocessing). Each project's unique priorities and workflow resulted in different proportions of data that were fully segmented and glossed, as shown in Table \ref{tab:goldstandard}.
 
-%\begin{table}
-%    \centering
-%    \begin{tabular}{lccc}
-%        \textbf{Language} & \textbf{Seg/Gloss} & \textbf{Translated} & \textbf{Ratio}\\
-%        \hline
-%        Alas & 75\% & 100\% & 3:4 \\
-%        \hline
-%        Arapaho &  &  \\
-%        \hline
-%        Lezgi &  &  \\
-%        \hline
-%        Manipuri &  &  \\
-%        \hline
-%        Natügu &  &  \\
-%        \hline
-%        Tsez & 100\% & 100\% & 1:1 \\
-%    \end{tabular}
-%    \caption[Proportions of Completed Interlinear Lines]{The percentage of lines in each corpus that were completely segmented and glossed (Seg/Gloss) and the percentage that was translated.}
-%    \label{tab:proportion}
-%\end{table}
-
-Each corpus required preprocessing because of errors, typos, changing analyses, or variable formatting. Even projects that employed the same software tool had variable formatting. For example, both Natugu and Bahasa Alas have circumfixing, but in one corpus the prefixed part was labeled as a circumfix and the suffixed part as a suffix, while the other corpus took the opposite approach. 
-%Other issues arose from the variety of fonts for models that only accept ASCII characters. 
-
-Gold standard data for training and testing was produced by filtering incomplete annotations. Only tokens that were completely segmented and glossed, and only sentences that were translated are included in the gold standard for the relevant experiments. The resulting data sizes are given in Table \ref{tab:goldstandard}.
-
-\begin{table}[h!]
+\begin{table}[hb]
     \centering
-    \begin{tabular}{l|r|r|c}
+    \begin{tabular}{l|r|rc}
          \textbf{Language} & \textbf{Tokens} & \multicolumn{2}{c}{\textbf{Gold}} \\
          \hline
          Alas & 4.5K & 3,775 & 85\%  \\
@@ -139,6 +113,32 @@ Gold standard data for training and testing was produced by filtering incomplete
     \caption[Corpora Sizes]{Corpora Sizes. The approximate token count does not include punctuation, digits, or proper names (when tagged as such) which are often left unannotated but can be easily supplied. The gold standard data are tokens that were fully segmented and glossed, shown as a number and as a percentage of corpus.}
     \label{tab:goldstandard}
 \end{table}
+
+%\begin{table}
+%    \centering
+%    \begin{tabular}{lccc}
+%        \textbf{Language} & \textbf{Seg/Gloss} & \textbf{Translated} & \textbf{Ratio}\\
+%        \hline
+%        Alas & 75\% & 100\% & 3:4 \\
+%        \hline
+%        Arapaho &  &  \\
+%        \hline
+%        Lezgi &  &  \\
+%        \hline
+%        Manipuri &  &  \\
+%        \hline
+%        Natügu &  &  \\
+%        \hline
+%        Tsez & 100\% & 100\% & 1:1 \\
+%    \end{tabular}
+%    \caption[Proportions of Completed Interlinear Lines]{The percentage of lines in each corpus that were completely segmented and glossed (Seg/Gloss) and the percentage that was translated.}
+%    \label{tab:proportion}
+%\end{table}
+
+Each corpus required preprocessing because of errors, typos, changing analyses, or variable formatting. Even projects that employed the same software tool had variable formatting. For example, both Natugu and Bahasa Alas have circumfixing, but in one corpus the prefixed part was labeled as a circumfix and the suffixed part as a suffix, while the other corpus took the opposite approach. 
+%Other issues arose from the variety of fonts for models that only accept ASCII characters. 
+
+Gold standard data for training and testing was produced by filtering incomplete annotations. Only tokens that were completely segmented and glossed, and only sentences that were translated are included in the gold standard for the relevant experiments. The resulting data sizes are given in Table \ref{tab:goldstandard}.
 
 The projects that produced the corpora spent different amounts of time on interlinearization, had different short-term goals, and varied by team size, team members' education or linguistic training. For example, the Alas corpus was produced in a matter of months while the Arapaho and Natügu corpora were produced by projects that have extended over many years. These two corpora, as well as the Tsez corpus, were annotated by teams with multiple linguists and native speakers. In contrast, the projects that produced the Alas corpus and most of the Lezgi corpus had one linguist and one or two native speaker annotators. The smaller, shorter projects were usually not able to provide as much training to annotators. Most projects were undertaken with the primary goal of documenting and describing the language, but the shorter-term goal of the Alas project is to support literacy efforts while most of the work on the Lezgi corpus was done to support an MA thesis on verbs. These factors are reflected in the quality of the interlinearization. For example, in the Lezgi corpus only verbs were consistently annotated by a trained linguist. The rest was annotated by a native speaker with minimal linguistic training and, therefore, contains more errors and inconsistencies. 
 

@@ -2,17 +2,15 @@
 \label{sec:seggls}
 
 %Morphological analysis of a language begins with identifying, segmenting, and glossing morphemes in words. Only a small percentage of tokens in transcribed text contain unusual and interesting morphological forms. Thus, a large chunk of this highly time-consuming work is as monotonous to the annotator as it is uninformative to language science. It can and should be assisted by machine learning. 
-The study proposed in this section will compare three machine learning models for segmenting and glossing when trained on two different segmentation strategies. The experiment will be conducted on four languages that have been segmented with surface and canonical strategies. 
+The study proposed in this section asks: \emph{How do choices made during interlinearization (i.e. surface versus canonical segmentation, in/consistent morpheme boundaries, lack/presence of part of speech tags) affect machine learning results on morpheme segmentation and glossing?} The experiments will compare three machine learning models for segmenting and glossing when trained on two different segmentation strategies. They will be conducted on four languages that have been manually segmented with surface and canonical strategies. 
 %Segmentation and glossing lays the foundation for further morphological analysis and description so 
-This study will also determine the best models to be used in the second study (Section \ref{sec:balance}). 
+%This study will also determine the best models to be used in the second study (Section \ref{sec:balance}). 
+The experiments will address two questions.
 
-The study will address two sets of questions.
-
-\item{} \textbf{Automating Segmentation and Glossing:} How do choices made during interlinearization (i.e. surface versus canonical segmentation, in/consistent morpheme boundaries, lack/presence of part of speech tags) affect machine learning results on morpheme segmentation and glossing? 
-     \begin{itemize}
-        \item To what extent do these choice affect the performance of a neural Transformer model compared to a Conditional Random Fields model? 
-        \item To what extent do they make a pipeline approach preferable to joint learning of morpheme boundaries and glosses?
-    \end{itemize}
+\begin{enumerate}
+    \item To what extent do these choice affect the performance of a neural Transformer model compared to a Conditional Random Fields model? 
+    \item To what extent do they make a pipeline approach preferable to joint learning of morpheme boundaries and glosses?
+\end{enumerate}
     
 \subsection{Segmentation Strategies}    
 Each machine learning system will be trained, tested, and compared on both (surface) morphs and (canonical) morphemes. Both canonical and surface segmentation are used in language documentation and description. In canonical segmentation, linguists provide ``underlying'' morphemes which allows them to ignore spelling changes triggered by surrounding phones. For example, the morpheme represented by the first two letters in``il-legal'' and ``in-capable'' would be canonically represented as ``in-''. In contrast, surface segmentation simply identifies morpheme boundaries between the letters in a word. 
@@ -27,9 +25,7 @@ Surface segmenation is generally easier for many segmentation algorithms. The al
 
 The corpora chosen for the research (Chapter \ref{chap:datamodels}) demonstrate different strategy choices.  Tsez has canonical segments and Arapaho has surface segments. The other languages, Manipuri, Natugu, Lezgi, and Alas were interlinearized with FLEx which uses both strategies simultaneously because of how the software interface works. These four languages will be used for this study because they allow comparison of the two segmentation strategies. 
 
-\begin{enumerate}[resume]
-    \item Under what circumstances does a neural Transformer model outperform a Conditional Random Field? Under what circumstances might a pipeline approach be preferable to joint learning of morpheme segments and glosses? What features of interlinearized glossed texts determine the choice of machine learning models?
-\end{enumerate}
+\subsection{Model Comparison}
 
 The performance on segmentation and glossing tasks will be compared across three machine learning systems.  Performance on the same segmentation strategy by different machine learning systems can identify the factors that linguists should consider when choosing machine learning systems. Performance on different segmentation strategies for the same language will show whether the choice of a segmentation strategy should affect the choice of model.  
 %Statistical models such as the CRF can often outperform a neural model in low-resource settings.
