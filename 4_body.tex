@@ -1,20 +1,24 @@
 \chapter{Body of Proposed Dissertation}
 \label{chap:body}
 
-The sections in this chapter describe three studies that will make up the main body of the proposed dissertation. The studies will address different aspects regarding the integration of machine learning into language documentation and description. %The first part will investigate the choice of different segmentation strategies as well as different machine learning models. The second part will identify how different balances of tasks affect integration. The third part looks at the effect of manual cleaning of data on machine learning of inflectional paradigms. 
-Each section presents a supporting pilot study.
+This chapter describe three studies that will make up the main body of the proposed dissertation. The studies will address different aspects regarding the integration of machine learning into language documentation and description. %The first part will investigate the choice of different segmentation strategies as well as different machine learning models. The second part will identify how different balances of tasks affect integration. The third part looks at the effect of manual cleaning of data on machine learning of inflectional paradigms. 
+A supporting pilot study is described for each study.
 
-The first part of the proposed dissertation body will discover how choices by annotators and what machine learning models influence automated segmentation and glossing. It involves three machine learning systems trained to segment and gloss four languages. These languages have been segmented with two strategies. Three different models will be trained and the results will be compared.  
+The first part of the proposed dissertation body will discover how choices by annotators and what machine learning models influence automated segmentation and glossing. It involves three machine learning systems trained to segment and gloss four languages. These languages have been segmented with two strategies. Three different models will be trained and the results compared.  
 
 %The second part 
 %will find the balance of completed tasks that give optimal results in both automated segmentation/glossing and machine translation. It will use various ratios of completion and find the optimal ratio. It will data from two languages which have relatively large amount of interlinear texts. Two machine learning models will be trained to segment and gloss and two to translate. One model from each will be trained on input that leverages information from other completed tasks. The relative differences in results for segmentation/glossing and translation will be compared.
 
-The next part proposes new computational methodology for the discovery and description of morphological inflection patterns. Machine learning systems will learn inflectional paradigms from IGT in six languages. The models will generate inflected forms that have been not encountered. One method will integrate manual work to remove noise, another will be completely automated process. The results will be compared.
+The next part proposes new computational methodology for the discovery and description of morphological inflection patterns. Machine learning systems will learn inflectional paradigms from IGT in six languages. The models will generate inflected forms that have been not encountered. One method will integrate manual work to remove noise, another will be completely automated process. 
+%The results will be compared.
 
-...
+The third part will investigate how the presence/lack of POS tags affects morphological annotation and description. Models will be trained to complete inflectional paradigms automatically gleaned from IGT data. Other models will be trained to segment and gloss with different corpus sizes and different amounts of POS tagging. Their performances will be compared with and without POS tags in the input.
 
 
+\newpage
 \input 4_body:seggls.tex
 %\input 4_body:balance.tex
+\newpage
 \input 4_body:inflection.tex
+\newpage
 \input 4_body:POS.tex

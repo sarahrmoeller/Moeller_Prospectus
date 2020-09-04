@@ -75,42 +75,72 @@ In most cases, more data was recorded and transcribed than could be interlineari
 \begin{table}[hb]
     \centering
     \begin{tabular}{l|r|rc}
-         \textbf{Language} & \textbf{Tokens} & \multicolumn{2}{c}{\textbf{Gold}} \\
+         \textbf{Language} & \textbf{Tokens} & \multicolumn{2}{c}{\textbf{Seg/Gloss}} \\
          \hline
          Alas & 4.5K & 3,775 & 85\%  \\
-         % 4462 btz actual number of tokens 
+         % 4462 btz raw number of tokens 
          % segmented and glossed: 3775/4462 = 0.846
+         % both segs & glossed: 3775/4462 = 0.846
+         % surf segmented: 3840
+         % canonically segmented: 3840
+         % glossed: 3775
          % translated: 302/303
          \hline
          Arapaho & 300K & 202,993 & 70\% \\
          % 294,774 arp actual number of tokens
          % segmented and glossed: 202993/294774 = 0.688
+         % MWE count:
+         % MWE seg & glossed: 
+         % surf segmented:
+         % canonically segmented: 
+         % glossed: 
          \hline
          Lamkang & 101K & 50,252 & 50\% \\
          % segmented & glossed: 50252/101005 = 0.497
+         % both segs & glossed: 49465/101005 = .489
+         % surf segmented: 60667
+         % canonically segmented: 49699
+         % glossed: 50252
          % translated: 8629/8640 = 0.998
          \hline
          Lezgi & 14K & 13,353  &  94\% \\
         % 14175 lez actual number of tokens
         % segmented & glossed: 13353/14175 = 0.942
-        % translated: 1531/1532
+         % both segs & glossed: 13262/14175 = 0.935
+         % surf segmented: 13943
+         % canonically segmented: 13625 
+         % glossed: 13353
+         % translated: 1531/1532
          \hline
          Manipuri & 12K & 11,907 & 98\% \\
         % 12139 mni actual number of tokens 
         % segmented & glossed: 11907/12139 = 0.980
-        % translated: 1784/1785
+         % both segs & glossed: 11904/12139 = 0.980
+         % surf segmented: 12187
+         % canonically segmented:  11908
+         % glossed: 11907
+         % translated: 1784/1785
          \hline
          Natügu & 16.5K & 13,925 &  84\%  \\
         % 16520 ntu actual number of tokens 
         % segmented & glossed: 13925/16520 = 0.842
-        % translated: 1541/1542
+         % MWE seg & glossed: 13924/16520 = 0.842
+         % surf segmented: 14577
+         % canonically segmented:  14136
+         % glossed: 13925
+         % translated: 1541/1542
          \hline
          Tsez & 53K & 53,145 & 100\%  \\
         % 53145 ddo actual number of tokens 
         % segmented & glossed: 53145/53145 = 1.0
-        % translated: 
+        % MWE count:
+         % MWE seg & glossed: 
+         % surf segmented:
+         % canonically segmented: 
+         % glossed: 
+         % translated: 
     \end{tabular}
-    \caption[Corpora Sizes]{Corpora Sizes. The approximate token count does not include punctuation, digits, or proper names (when tagged as such) which are often left unannotated but can be easily supplied. The gold standard data are tokens that were fully segmented and glossed, shown as a number and as a percentage of corpus.}
+    \caption[Corpora Sizes]{Corpora Sizes. The approximate token count considers multiple word expressions as one word (when parsed as such) and does not include punctuation, digits, or proper names (when tagged as such). The last three are often left unannotated but can be easily supplied. The tokens that were segmented in some way (canonically or surface) and glossed are shown as a number and as a percentage of corpus.}
     \label{tab:goldstandard}
 \end{table}
 

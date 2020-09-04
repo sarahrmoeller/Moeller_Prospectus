@@ -16,7 +16,7 @@ are endangered.%\mans{The big data requirement is pretty specific to neural mode
 
 Fortunately, this is changing. In recent years, NLP research with limited data has burgeoned. This is evidenced, for instance, by the 2015-2019 DARPA-funded LORELEI project, motivated in part by the 2014 Haiti earthquake where disaster aid was hampered by language. Haitian Creole is a language rarely encountered in NLP. When medicine and clean water were available, foreign aid workers struggled to process information that told them where supplies were most urgent. 
 
-Despite this growth, very few NLP systems have been integrated into the process of documenting and describing endangered languages. This may be due to the specific challenges presented by the dynamic, evolving nature of ongoing linguistic analysis and the inconsistencies that arise during the manual annotation. These challenges illustrate why documentary and descriptive linguists must adjust their methods
+Despite this growth, very few NLP systems have been integrated into the process of documenting and describing endangered languages. This may be due to the dynamic, evolving nature of ongoing linguistic analysis and the inconsistencies that arise during the manual annotation. These challenges illustrate why documentary and descriptive linguists must adjust their methods
 %their methods to the specifications of machine learning specifications 
 in order to effectively integrate the benefits of machine learning.
 
@@ -51,9 +51,18 @@ Once language data has been analyzed and annotated it becomes usable for further
 \end{singlespace}
 
 
-The proposed dissertation is motivated by a “yawning gap” \citep{seifart_language_2018} between the amount of documented data deposited in language archives and the portion of the data that is usable for research. This gap is caused by what has been described as an annotation bottleneck, illustrated in Figure \ref{fig:bottleneck}. The bottleneck is created by currently accepted but tedious and time-consuming methods that are done primarily by hand from start to finish \citep{simons_worlds_2013,holton_developing_2017}. 
+The proposed dissertation is motivated by a “yawning gap” \citep{seifart_language_2018} between the amount of documented data deposited in language archives and the portion of the data that is usable for research. This gap is caused by what has been described as an annotation bottleneck, illustrated in Figure \ref{fig:bottleneck}. The bottleneck is created by accepted but tedious and time-consuming methods performed primarily by hand from start to finish \citep{simons_worlds_2013,holton_developing_2017}. 
 %The process is labor- and time-intensive. Manual annotation is subject to human error, with many mistakes and inconsistencies due not to the difficulty of the task, but to its repetitive and monotonous nature.
 Budget constraints often mean that large portions of the data produced by field projects are left unannotated. They remain untapped resources. These resources could inform the development of linguistics science and NLP. They could also build human language technology that would benefit the communities that speak them. 
+
+
+\begin{figure}[hbt]
+    \centering
+    \includegraphics[width=6cm]{figs/AnnotationFunnel.jpg}
+    \caption[Annotation Bottleneck]{Annotation bottleneck in language documentation and description.}
+    \label{fig:bottleneck}
+\end{figure}
+
 
 The proposed research asks: \emph{How should the integration of machine learning  influence accepted workflows of language documentation and description?} It will use machine learning and corpora from six endangered or under-documented languages to  
 %address the annotation bottleneck by examining 
@@ -62,8 +71,6 @@ examine how current methods affect machine learning performance and the potentia
 \begin{enumerate}
 \item{} \textbf{Automating Segmentation and Glossing:} How do choices made during interlinearization (i.e. surface versus canonical segmentation, in/consistent morpheme boundaries, lack/presence of part of speech tags) affect machine learning results on morpheme segmentation and glossing? How do these choices affect the performance of different machine learning models?
 
-\item A SECOND QUESTION
-
 %\item{} \textbf{Balance of Interlinearization Tasks:} When faced with limited time, how does integration of machine learning dictate the priorities of completing different interlinear lines? 
 %segmentation and glossing over free translation? 
 %    \begin{itemize}
@@ -71,16 +78,11 @@ examine how current methods affect machine learning performance and the potentia
 %        \item{} To what extent does completion of other interlinear lines affect the results on any one line? I.e.  Does leveraging glosses improve machine translation? Can information extracted from other lines of interlinear glossed texts improve segmentation and glossing?  
 %    \end{itemize}
 
-\item{} \textbf{Morphological Description:} To what extent can manually interlinearized texts be utilized for computational induction of morphological inflection patterns? 
+\item{} \textbf{Morphological Description:} To what extent can manually interlinearized texts be utilized for computational induction of morphological inflection patterns?
+
+\item ANOTHER QUESTION
+
 \end{enumerate}
-
-
-\begin{figure}[h!]
-    \centering
-    \includegraphics[width=6cm]{figs/AnnotationFunnel.jpg}
-    \caption[Annotation Bottleneck]{Annotation bottleneck in language documentation and description.}
-    \label{fig:bottleneck}
-\end{figure}
 
 \section{Expected Results and Implications}
 

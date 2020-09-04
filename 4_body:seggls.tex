@@ -13,17 +13,70 @@ The experiments will address two questions.
 \end{enumerate}
     
 \subsection{Segmentation Strategies}    
-Each machine learning system will be trained, tested, and compared on both (surface) morphs and (canonical) morphemes. Both canonical and surface segmentation are used in language documentation and description. In canonical segmentation, linguists provide ``underlying'' morphemes which allows them to ignore spelling changes triggered by surrounding phones. For example, the morpheme represented by the first two letters in``il-legal'' and ``in-capable'' would be canonically represented as ``in-''. In contrast, surface segmentation simply identifies morpheme boundaries between the letters in a word. 
+Each machine learning system will be trained, tested, and compared on both (surface) morphs and (canonical) morphemes. Both canonical and surface segmentation are used in language documentation and description. In canonical segmentation, linguists provide ``underlying'' morphemes which allows them to ignore spelling changes triggered by surrounding phones. For example, the morpheme represented by the first two letters in``il-legal'' and ``in-capable'' would be canonically represented as ``in-''. In contrast, surface segmentation simply puts morpheme boundaries between the letters in a word. 
 
 Comparing the performance on the same segmentation strategy across languages will indicate features of annotated data that might affect the results of integrated machine learning systems. Canonical segmentation gives more information about the language than surface segmentation. However, it requires thorough analysis of the language's allomorphy. 
 %, and it can be more difficult to do for non-linguist annotators. 
-Surface segmenation is generally easier for many segmentation algorithms. The algorithms are not usually tasked to learn allomorphy \citep{goldsmith_computational_2017}. They simply divide strings of text \citep{virpioja_empirical_2011}. In NLP, these surface segments are sometimes referred to as ``morphs'' and canonical segments can be distiguished as ``morphemes''. 
+Surface segmentation is easier because the algorithms are not usually tasked to learn allomorphy \citep{goldsmith_computational_2017}. They simply divide strings of text \citep{virpioja_empirical_2011}, called ``morphs'' to distinguish them from the linguistic concept of underlying or canonical ``morphemes''. 
 %without regard to a morpheme’s potential relation to other morphemes 
 
 %, though some learning of morphophonogical changes may happen before segmentation 
 %For this reason, computational morpheme segmentation tends to perform better on concatenative morphology while computational modeling of non-concatenative morphology, particularly when it occurs in a language that also evinces concatenative morphology (common among Austronesian languages including Bahasa Alas and Natugu), remains ``arguably one of the main current challenges'' of computational morphology \citep{goldsmith_computational_2017}. 
 
-The corpora chosen for the research (Chapter \ref{chap:datamodels}) demonstrate different strategy choices.  Tsez has canonical segments and Arapaho has surface segments. The other languages, Manipuri, Natugu, Lezgi, and Alas were interlinearized with FLEx which uses both strategies simultaneously because of how the software interface works. These four languages will be used for this study because they allow comparison of the two segmentation strategies. 
+The corpora chosen for the research demonstrate different strategy choices.  Tsez has canonical segments and Arapaho has surface segments. The other languages, Manipuri, Natugu, Lamkang, Lezgi, and Alas were interlinearized with FLEx which uses both strategies simultaneously because of how the software interface works. These four languages will be used for this study because they allow comparison of the two segmentation strategies. However, only tokens that were segmented by both strategies are used. In most cases, only a few words are missing a canonical segments. Table \ref{tab:BothSegs} shows the number of words that are segmented by both strategies. Note that except for Lamkang and Lezgi this numbers are identical to Table \ref{tab:goldstandard}.
+
+\begin{table}[t]
+    \centering
+    \begin{tabular}{l|r|rc}
+         \textbf{Language} & \textbf{Tokens} & \multicolumn{2}{c}{\textbf{Gold}} \\
+         \hline
+         Alas & 4.5K & 3,775 & 85\%  \\
+         % 4462 btz raw number of tokens 
+         % segmented and glossed: 3775/4462 = 0.846
+         % both segs & glossed: 3775/4462 = 0.846
+         % surf segmented: 3840
+         % canonically segmented: 3840
+         % glossed: 3775
+         % translated: 302/303
+         \hline
+         Lamkang & 101K & 49,465 & 49\% \\
+         % segmented & glossed: 50252/101005 = 0.497
+         % both segs & glossed: 49465/101005 = .489
+         % surf segmented: 60667
+         % canonically segmented: 49699
+         % glossed: 50252
+         % translated: 8629/8640 = 0.998
+         \hline
+         Lezgi & 14K & 13,262  &  94\% \\
+        % 14175 lez actual number of tokens
+        % segmented & glossed: 13353/14175 = 0.942
+         % both segs & glossed: 13262/14175 = 0.935
+         % surf segmented: 13943
+         % canonically segmented: 13625 
+         % glossed: 13353
+         % translated: 1531/1532
+         \hline
+         Manipuri & 12K & 11,907 & 98\% \\
+        % 12139 mni actual number of tokens 
+        % segmented & glossed: 11907/12139 = 0.980
+         % both segs & glossed: 11904/12139 = 0.980
+         % surf segmented: 12187
+         % canonically segmented:  11908
+         % glossed: 11907
+         % translated: 1784/1785
+         \hline
+         Natügu & 16.5K & 13,925 &  84\%  \\
+        % 16520 ntu actual number of tokens 
+        % segmented & glossed: 13925/16520 = 0.842
+         % MWE seg & glossed: 13924/16520 = 0.842
+         % surf segmented: 14577
+         % canonically segmented:  14136
+         % glossed: 13925
+         % translated: 1541/1542
+    \end{tabular}
+    \caption[Both Segmentation Strategies Corpora]{Total approximate tokens and the gold standard data for segmentation and glossing. The gold data is the number of tokens that were segmented in as both canonical and surface segments, as well as glossed, shown as a number and as a percentage of corpus.}
+    \label{tab:goldstandard}
+\end{table}
 
 \subsection{Model Comparison}
 
@@ -41,14 +94,14 @@ The CRF and the Transformer will perform joint segmentation and glossing. The di
 
 The joint segmentation and glossing task will be treated as a problem of converting an input sequence of letters $\vect{x} = (x_1, \ldots, x_n)$ to an output sequence of symbols $\vect{y} = (y_1, \ldots, y_n)$. The input for both models will be a character-level representation of the text, represented as a string of space-delimited letters. The output will be a sequence of labels indicating the (canonical or surface) morpheme, and the morpheme's gloss. The combination of these two bits of information allows the system to perform segmentation and labeling/glossing simultaneously. The labels are specific to each morph or morpheme. %Each line will contain \textbf{one word or one sentence.?????}
 
-The input for the CRF will fed as one sentence per line, as shown in (\ref{ex:CRFin}) for surface segmentation. The input includes a feature function that will extract features from surrounding words, morphemes, and letters. The CRF will add BIO-labels to the output labels \citep{ramshaw1999}, one for each letter, as shown in (\ref{ex:CRFOut}). This is a type of labeling where each letter is declared either the beginning (B) of a morpheme or an inside (I) position. 
+The input for the CRF will fed as one sentence per line, as shown in (\ref{ex:CRFin}) for surface segmentation. The input will be a feature function representing each letter. Features will be extracted from the text and will be generalizable for any language, such as letter position in the word and surrounding letter sequences. The output will be BIO-labels \citep{ramshaw1999}, one for each letter, that indicate the position of the letter in the morpheme, the predicted morpheme shape, and its gloss, as shown in (\ref{ex:CRFOut}). This BIO labels declares each letter as either the beginning of a morpheme with ``B'' or as an inside position with``I''. 
 
 \begin{singlespace}
 \pex<CRFInOut>   
 \label{ex:CRFInOut}
-\a<a> \textbf{INPUT:} \hspace{7 mm} I \hspace{13 mm} a \hspace{14 mm} m \hspace{12 mm} g \hspace{15 mm} o \hspace{15 mm} n \hspace{15 mm} e 
+\a<a> \hspace{7 mm} I \hspace{13 mm} a \hspace{14 mm} m \hspace{15 mm} g \hspace{18 mm} o \hspace{20 mm} n \hspace{19 mm} e 
 \label{ex:CRFin}
-\a<b> \textbf{OUTPUT:} B-i-1\textsc{sg} \hspace{1 mm} B-am-be \hspace{1 mm} I-am-be \hspace{1 mm} B-go-move \hspace{1 mm} I-go-move \hspace{1 mm} B-ne-\textsc{ptcp} \hspace{1 mm} I-ne-\textsc{ptcp}
+\a<b> B\#i\#1\textsc{sg} \hspace{.25 mm} B\#am\#be \hspace{.25 mm} I\#am\#be \hspace{.25 mm} B\#go\#move \hspace{.25 mm} I\#go\#move \hspace{.25 mm} B\#-ne\#\textsc{ptcp} \hspace{.25 mm} I\#-ne\#\textsc{ptcp}
 \label{ex:CRFOut}
 \xe
 \end{singlespace}
@@ -58,9 +111,9 @@ The Transformer will take in one word per line and output a sequence of labels, 
 \begin{singlespace}
 \pex<CRFInOut>   
 \label{ex:TransInOut}
-\a<a> \textbf{INPUT:} \hspace{3 mm} g \hspace{2 mm} o \hspace{2 mm} n \hspace{2 mm} e 
+\a<a> \textbf{INPUT:} \hspace{6 mm} g \hspace{2 mm} o \hspace{2 mm} n \hspace{2 mm} e 
 \label{ex:Transin}
-\a<b> \textbf{OUTPUT:} \hspace{3 mm} go-move \hspace{1 mm} ne-\textsc{ptcp} 
+\a<b> \textbf{OUTPUT:} \hspace{3 mm} go\#move \hspace{1 mm} -ne\#\textsc{ptcp} 
 \label{ex:TransOut}
 \xe
 \end{singlespace}
@@ -74,9 +127,9 @@ The pipeline system will first segment with the CRF and then gloss with the SVM.
 \begin{singlespace}
 \pex<CRFInOut>   
 \label{ex:CRF2InOut}
-\a<a> \textbf{INPUT:} \hspace{8 mm} I \hspace{7 mm} a \hspace{7 mm} m \hspace{7 mm} g \hspace{6 mm} o \hspace{6 mm} n \hspace{6 mm} e 
+\a<a> \textbf{INPUT:} \hspace{8 mm} I \hspace{8 mm} a \hspace{9 mm} m \hspace{8 mm} g \hspace{8 mm} o \hspace{8 mm} n \hspace{10 mm} e 
 \label{ex:CRF2in}
-\a<b> \textbf{OUTPUT:} \hspace{2 mm} B-i \hspace{1 mm} B-am \hspace{1 mm} I-am \hspace{1 mm} B-go \hspace{1 mm} I-go \hspace{1 mm} B-ne \hspace{1 mm} I-ne
+\a<b> \textbf{OUTPUT:} \hspace{2 mm} B\#i \hspace{1 mm} B\#am \hspace{1 mm} I\#am \hspace{1 mm} B\#go \hspace{1 mm} I\#go \hspace{1 mm} B\#-ne \hspace{1 mm} I\#-ne
 \label{ex:CRF2Out}
 \xe
 \end{singlespace}
