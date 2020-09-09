@@ -16,60 +16,43 @@ are endangered.%\mans{The big data requirement is pretty specific to neural mode
 
 Fortunately, this is changing. In recent years, NLP research with limited data has burgeoned. This is evidenced, for instance, by the 2015-2019 DARPA-funded LORELEI project, motivated in part by the 2014 Haiti earthquake where disaster aid was hampered by language. Haitian Creole is a language rarely encountered in NLP. When medicine and clean water were available, foreign aid workers struggled to process information that told them where supplies were most urgent. 
 
-Despite this growth, very few NLP systems have been integrated into the process of documenting and describing endangered languages. This may be due to the dynamic, evolving nature of ongoing linguistic analysis and the inconsistencies that arise during the manual annotation. These challenges illustrate why documentary and descriptive linguists must adjust their methods
+Despite this growth, very few NLP systems have been integrated into the process of documenting and describing endangered languages. This may be due to challenges presented by the dynamic, evolving nature of ongoing linguistic analysis and the inconsistencies that arise from manual annotation of data. To overcome these challenges linguists must know how to adjust their methods
 %their methods to the specifications of machine learning specifications 
-in order to effectively integrate the benefits of machine learning.
+so they can benefit from NLP tools.
+
 
 \section{Overview of Proposed Research}
 
-In production of new language data, illustrated in Figure \ref{fig:flowchart}, a team of linguists and native speakers (a) collaborate to document language data that benefits the community of speakers, linguistic sciences, and NLP development. However, a bottleneck of time-consuming annotation (b) makes keeps data largely inaccessible. The proposed research examines ways that linguists can address this by integrating machine learning (c). Machine learning increases %provide automated assistance to document and describe endangered languages with 
-speed and accuracy but linguists must be able to make effective use of it. The proposed dissertation research 
-%will focus on effective integration of machine learning into language documentation and description. It 
-will ask how linguists should adjust their work to achieve optimal results from machine learning assistance. It will look specifically at interlinearization and inflectional paradigm induction.
-%The proposed research focuses on effective integration for morphological annotation and analysis.
-
-\begin{figure}[h!]
+\begin{figure}[b]
 \centering
-\includegraphics[width=6cm]{figs/Flowchart.PNG}
+\includegraphics[width=5.75cm]{figs/Flowchart.PNG}
 \caption[Language Data Production]{Language Data Production}
 \label{fig:flowchart}
 \end{figure}
 
+The proposed dissertation research will examine some current language documentation and description methods and investigate how they might be leveraged to more effectively integrate NLP. The general flow of documentary and descriptive work and outcomes is illustrated in Figure \ref{fig:flowchart}. A team of linguists and native speakers (a) collaborate to document and conduct basic linguistic analysis on language data. That data benefits linguistic sciences, NLP development, and the community of speakers. However, because annotating the data is time- and labor-intensive work, a significant portion of that data remains inaccessible (b) to the first two groups, and to a lesser extent, to the community. The proposed dissertation will promote ways to make more data accessible through the integrating NLP systems of machine learning (c). Machine learning can increase %provide automated assistance to document and describe endangered languages with 
+speed and accuracy of annotation, but only if linguists know how to make effective use of it. The proposed research 
+%will focus on effective integration of machine learning into language documentation and description. It 
+will look at ways linguists can adjust their work, specifically as related to interlinearization, so that when machine learning is integrated optimal results are achieved. 
+%The proposed research focuses on effective integration for morphological annotation and analysis.
 
-Once language data has been analyzed and annotated it becomes usable for further scientific discovery in linguistics and NLP. After documented data is transcribed, it is annotated with basic linguistic analysis in a multi-step process called interlinearization. Narrowly defined, interlinearization comprises three tasks: 1) segmenting words into morphemes, 2) glossing each morpheme with its narrow lexical or grammatical translation, and 3) freely translating whole sentences into a language of wider communication to show how the morphemes combine to create meaning. The result is illustrated in example (\ref{ex:IGTex}) with a transliterated Russian sentence. Interlinearization lays the foundation for other analysis and annotation, such as identifying morphological inflectional patterns.  
-%Although textual data contains many repeated linguistic structures, it is only by 
-%Interlinearizing all data uncovers rare and unique linguistic phenomena among the very common and frequently repeated structures. 
-
-\begin{singlespace}
-\pex<IGTex>   
-\label{ex:IGTex}
-\textbf{Text:} \hspace{14 mm} Vecherom \hspace{4.75 mm} ya \hspace{13 mm} pobejala \hspace{21 mm} v \hspace{2 mm} magazin \\
-\textbf{Segmented:} \hspace{2 mm} vecher-om \hspace{4 mm} ya \hspace{13 mm} pobeja-la \hspace{20 mm} v \hspace{2 mm} magazin \\
-\textbf{Glossed:} \hspace{8.5 mm} evening-\textsc{ins} \hspace{1 mm} 1.\textsc{sg.nom} \hspace{1 mm} run-\textsc{pfv.pst.sg.fem} \hspace{1 mm} in \hspace{1 mm} store.\textsc{acc} \\
-\textbf{Translation:} \hspace{1 mm} `In the evening I ran to the store.' \\
-\xe
-\end{singlespace}
-
-
-The proposed dissertation is motivated by a “yawning gap” \citep{seifart_language_2018} between the amount of documented data deposited in language archives and the portion of the data that is usable for research. This gap is caused by what has been described as an annotation bottleneck, illustrated in Figure \ref{fig:bottleneck}. The bottleneck is created by accepted but tedious and time-consuming methods performed primarily by hand from start to finish \citep{simons_worlds_2013,holton_developing_2017}. 
+The proposed dissertation is motivated by a “yawning gap” between the amount of documented data deposited in language archives and the portion of the data that is actually usable for research \citep{seifart_language_2018}. This gap is caused by what has been described as an ``annotation bottleneck'', illustrated in Figure \ref{fig:bottleneck}. The bottleneck exists because the accepted annotations methods are tedious, time-consuming, and expensive, performed primarily by hand from start to finish \citep{simons_worlds_2013,holton_developing_2017}.
 %The process is labor- and time-intensive. Manual annotation is subject to human error, with many mistakes and inconsistencies due not to the difficulty of the task, but to its repetitive and monotonous nature.
-Budget constraints often mean that large portions of the data produced by field projects are left unannotated. They remain untapped resources. These resources could inform the development of linguistics science and NLP. They could also build human language technology that would benefit the communities that speak them. 
-
+Budget and time constraints often mean that large portions of the data produced by field projects are left unannotated. They remain untapped resources. 
+%These resources could inform the development of linguistics science and NLP. They could also build human language technology that would benefit the communities that speak them. 
 
 \begin{figure}[hbt]
     \centering
-    \includegraphics[width=6cm]{figs/AnnotationFunnel.jpg}
+    \includegraphics[width=5.5cm]{figs/AnnotationFunnel.jpg}
     \caption[Annotation Bottleneck]{Annotation bottleneck in language documentation and description.}
     \label{fig:bottleneck}
 \end{figure}
 
 
-The proposed research asks: \emph{How should the integration of machine learning  influence accepted workflows of language documentation and description?} It will use machine learning and corpora from six endangered or under-documented languages to  
-%address the annotation bottleneck by examining 
-examine how current methods affect machine learning performance and the potential to incorporate more automated assistance. This will be done with three studies:
+The proposed dissertation asks: \emph{How would/should the integration of machine learning affect currently accepted workflows of language documentation and description?} It will address the annotation bottleneck by examining how current methods affect machine learning performance and investigating the potential of incorporating machine learning as automated assistance. This will be done with three studies that use NLP machine learning models and documentary and descriptive corpora from seven endangered or under-documented languages.
 
 \begin{enumerate}
-\item{} \textbf{Automating Segmentation and Glossing:} How do choices made during interlinearization (i.e. surface versus canonical segmentation, in/consistent morpheme boundaries, lack/presence of part of speech tags) affect machine learning results on morpheme segmentation and glossing? How do these choices affect the performance of different machine learning models?
+\item{} \textbf{Automating Joint Segmentation and Glossing:} How do choices made during interlinearization (i.e. surface versus canonical segmentation, in/consistent manual annotation) affect machine learning results on morpheme segmentation and glossing? How do different machine learning models perform on the data?
 
 %\item{} \textbf{Balance of Interlinearization Tasks:} When faced with limited time, how does integration of machine learning dictate the priorities of completing different interlinear lines? 
 %segmentation and glossing over free translation? 
@@ -80,29 +63,30 @@ examine how current methods affect machine learning performance and the potentia
 
 \item{} \textbf{Morphological Description:} To what extent can manually interlinearized texts be utilized for computational induction of morphological inflection patterns?
 
-\item ANOTHER QUESTION
+\item \textbf{Priority of Part of Speech Tagging:} How should the priorities of part of speech tagging in NLP influence the priorities of documentary and descriptive work?
 
 \end{enumerate}
 
 \section{Expected Results and Implications}
 
-The proposed dissertation research will study effective integration of computational methods that could open the annotation bottleneck. 
+The contribution of the proposed dissertation will be four-fold. 
+%study effective integration of computational methods that could open the annotation bottleneck. 
 %caused by current time-consuming manual methods to produce morpheme segmentation, glossing, free translation, and first-pass hypotheses of morphological inflectional paradigms. 
-Its contribution will be four-fold. 
 
-First, it will demonstrate how machine learning can be applied to tasks into the documentary and descriptive pipeline in several languages. This will test the potential to produce new annotated data more quickly and accurately than current methods. Other research has demonstrate this with models built for one or two languages. This research will demonstrate the potential for several languages with the same models. The result will be a machine learning pipeline for interlinearization and inflectional paradigm induction.
+First, with successful automated joint segmentation and glossing it will integrate machine learning into the documentary and descriptive pipeline for several typologically different languages. This will demonstrate the potential for producing new annotated data more quickly and accurately than is possible with current methods. While other research has demonstrate this with systems for one or two languages, this research will be conducted on several languages and will show the practicality of automated assistance for morphological annotation regardless of language typology. 
 
-Second, the proposed dissertation will demonstrate the potential for machine learning to assist linguists in deeper linguistic analysis and description. A main theme of the proposed research is that machine learning systems can take advantage of the typical output from documentary and descriptive field work but this requires cooperation and flexibility. It will unite the efforts of linguistics and NLP by training machine learning on linguistic field data. Rather than curated published data  NLP systems are normally trained on, it will leverage interlinearized glossed texts produced by documentary and descriptive projects. Since this research will be performed on “real live” field data---sometimes the only annotated data available for a language---it may uncover unforeseen challenges for NLP in low-resource settings.
-%Specifically, it will use neural networks to learn inflectional patterns in six languages.
+Second, by testing a process to learn inflectional paradigms from field data the proposed dissertation will demonstrate the potential for machine learning to assist linguists in deeper analysis and description. This is a step towards integrating machine learning assistance beyond early documentary stages and using it to build and test holistic hypotheses about a language's structure.
+
+Second, the dissertation will unite the efforts of linguistics and NLP by successfully training machine learning on linguistic field data. A main theme of the proposed research is that machine learning systems can achieve reasonable performance when trained on the often noisy output produced by documentary and descriptive projects. Rather than the curated published data that NLP systems are normally trained on, this research will leverage interlinearized glossed texts from documentary and descriptive field work. Since this research will be performed on ``real live” field data---sometimes the only annotated data available for a language---it may uncover as-yet unforeseen challenges for NLP systems in low-resource settings.
+%Specifically, it will use neural networks to learn inflectional patterns in five languages.
 %\mans{``neural machine learning'' is perhaps a little too loose: neural networks might be better.}
-This is a step towards integrating machine learning assistance when building holistic hypotheses about a language's structure.
 
-Third, it will establish not only that new computational methods can be successfully integrated into language documentation and description, but show how this will impact linguistics field methods. It will do this by analyzing the characteristics of the input data. Much of the discussions will focus on how these characteristics affect the machine learning's output.
+Third, it will establish not only that new computational methods can be successfully integrated into language documentation and description, but it will show how linguistics field methods may impact NLP systems and test whether certain NLP assumptions about data annotation should impact linguistics field methods. It will do this by studying what happens when NLP priorities are borrowed for documentary and descriptive linguistics, specifically the priority of part of speech (POS) tagging. Additionally, the discussions of other studies will focus on the characteristics and quality of the manually annotated data and how these characteristics affect the machine learning's performance.
 
-Fourth, the proposed research will increase annotated data in six endangered and low-resource languages. These languages represent a range of linguistic structures and language families. They are spoken by communities across five continents. Interlinear texts in these languages are currently limited to 5-100K words. The amount of descriptive linguistic publications for all is quite low. Increasing annotated data would allow more thorough testing of linguistic theories and computational models.
+Fourth, the proposed research will increase annotated data in five low-resource languages. These languages represent a range of linguistic structures and language families. They are spoken by communities across five continents. Interlinear texts in these languages are currently limited to 5-100K words and the amount of descriptive publications is quite low. Increased annotated data will allow more thorough testing of linguistic theories and computational models.
 %, which contribute to our understanding of human language and the performance of machine learning algorithms in low-resource settings. 
 
 \section{Organization of Prospectus}
 
-This Prospectus describes the author's planned dissertation research. Chapter \ref{chap:litreview} reviews issues in previous research that are related to the proposed research. Chapter \ref{chap:datamodels} describes the data and computational models that will be used. Chapter \ref{chap:body} outlines the experiments that will be conducted and presents results from pilot studies. The Prospectus concludes with a timeline (Chapter \ref{chap:timeline}). % and a summary (Chapter \ref{chap:conclusion}) of the potential impact of this work.
+This Prospectus describes the author's planned dissertation research. Chapter \ref{chap:litreview} reviews issues in previous research that are related to the proposed research. Chapter \ref{chap:datamodels} describes the data and computational models the research will use. Chapter \ref{chap:body} outlines the experiments that will be conducted and presents results from pilot studies. The Prospectus concludes with a timeline (Chapter \ref{chap:timeline}) and a summary and alternative or future work (Chapter \ref{chap:conclusion}).
 

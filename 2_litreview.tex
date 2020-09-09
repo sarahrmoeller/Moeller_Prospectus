@@ -21,10 +21,21 @@ The workflow of language documentation and description activities is not standar
 
 One primary output of this workflow is interlinear glossed texts (IGT), a distinctive data format in linguistics. 
 %The process of creating IGT is interlinearization. 
-Interlinearization takes center stage after recorded speech has been transcribed. It moves the workflow beyond simple collection of data but still serves as a ``preprocessing step'' \citep{moon_unsupervised_2009} to the description of morphology, syntax, etc. It comprises any number of annotation tasks that enrich the data with analytic information which is added on lines under the original transcribed text. Several common lines of annotation are shown in Figure \ref{fig:IGTillus}. The lines can be added in any order, but translations (task 2a) morpheme boundaries and morpheme glosses (task 3) are usually added first. Therefore, in this research the term ``interlinearization'' usually denotes three annotation tasks: 1) identifying morpheme boundaries (\emph{morpheme segmentation}), 2) labeling each morpheme with its lexical meaning or morphosyntactic function (\emph{glossing}), and 3) providing \emph{free translations} of sentences in a language of wider communication. 
+Interlinearization takes center stage after recorded speech has been transcribed. It moves the workflow beyond simple collection of data but still serves as a ``preprocessing step'' to \citep{moon_unsupervised_2009} language description (strictly defined). It comprises a number of annotation tasks that enrich the data with analytic information which can be added on lines under the original transcribed text. Several common lines of annotation are shown in Figure \ref{fig:IGTillus}. Since language contains many repeated linguistic structures, it is only by interlinearizing more and more data that the rarer and unique linguistic phenomena are uncovered. To assist the identification and study of these phenomena other lines of annotation, such as syntactic categories labels (or POS tags) are added. The lines can be added in any order, but translations (task 2a) morpheme boundaries and morpheme glosses (task 3) are usually added first. As the workflow above indicates, desriptive annotation beyond these lines is beyond the priorities of language documentation (strictly defined). Therefore, in this work ``interlinearization'' usually denotes three annotation tasks: 1) identifying morpheme boundaries (\emph{morpheme segmentation}), 2) labeling each morpheme with its lexical meaning or morphosyntactic function (\emph{glossing}), and 3) providing \emph{free translations} of sentences in a language of wider communication.  
 
-%IGT lay the foundation for published literature such as reference grammars and dictionaries.
-%This process makes documentatioan and description difficult to distinguish because it does not clearly fall under either subfield. 
+%The result is illustrated in example (\ref{ex:IGTex}) with a transliterated %Russian sentence.   
+
+%\begin{singlespace}
+%\pex<IGTex>   
+%\label{ex:IGTex}
+%\textbf{Text:} \hspace{14 mm} Vecherom \hspace{4.75 mm} ya \hspace{13 mm} pobejala \hspace{21 mm} v \hspace{2 %mm} magazin \\
+%\textbf{Segmented:} \hspace{2 mm} vecher-om \hspace{4 mm} ya \hspace{13 mm} pobeja-la \hspace{20 mm} v \hspace{2 mm} magazin \\
+%\textbf{Glossed:} \hspace{8.5 mm} evening-\textsc{ins} \hspace{1 mm} 1.\textsc{sg.nom} \hspace{1 mm} run-\textsc{pfv.pst.sg.fem} \hspace{1 mm} in \hspace{1 mm} store.\textsc{acc} \\
+%\textbf{Translation:} \hspace{1 mm} `In the evening I ran to the store.' \\
+\xe
+%\end{singlespace}
+
+%This process makes documentation and description difficult to distinguish because it does not clearly fall under either subfield. 
 
 \begin{figure}[H]
     \centering
@@ -33,7 +44,7 @@ Interlinearization takes center stage after recorded speech has been transcribed
     \label{fig:IGTillus}
 \end{figure}
 
-Another output of this workflow is a collection of morphological inflectional patterns for several lemma. Inflectional patterns, or paradigms, are elicited for specific lemmas  (task 4) because complete paradigms are rarely found in IGT. These lemma-specific paradigms are used to infer general rules of inflection. These rules become part of the systematic description of the language's morphological structure.
+Interlinearization opens the door for deeper analysis and description and lays the foundation for reference grammars, dictionaries, and language learning materials, but not sufficiently by itself. One additional descriptive task must be included in the documentary workflow: the collection of morphological inflection patterns, or paradigms, for several lemma (task 4). Inflectional paradigms are elicited in documentary work because complete paradigms are rarely found in natural language and complete lemma-specific paradigms are needed to infer general rules of inflection which are an important part of any systematic linguistic description.
 
 
 \section{Natural Language Processing (NLP) for Low Resource Languages}
@@ -93,7 +104,7 @@ A hand-designed feature function for a task such as morpheme segmentation might 
 
 The performance of feature-based models, such as the CRF and SVM (see Chapter \ref{chap:datamodels}), relies heavily on the manual choice of features. This could be a drawback for under-described languages, because if little linguistic description is available, how does one know which features are optimal for that language? Fortunately, some feature-based models have been shown to perform reasonably well using language-independent features \citep{ruokolainen_comparative_2016,moeller_automatic_2018}.  
 
-\begin{figure}[h]
+\begin{figure}[t]
 \label{fig:Features-ML}
 \begin{center}
 \includegraphics[width=0.95\columnwidth]{figs/Features-ML.PNG}
@@ -187,9 +198,7 @@ Morphology includes the inference of rules that govern a language’s word build
 
 \cite{durrett_supervised_2013} claim that the inference of inflectional patterns must be based on three assumptions. First, each lexical category is dictated by a subsystem of rules. Russian nouns, for example, can be generalized into three simplified patterns of inflection, shown in Table \ref{tab:RuParadigm}. Lexemes that adhere to the same pattern are grouped into inflectional classes (sometimes called ``declensions'' for nouns and adjectives and ``conjugations'' for verbs). The patterns themselves are known as inflectional paradigms. Second, inflectional changes are triggered by context and, therefore, the patterns can be inferred from context. Descriptive studies look to phonology or else to both phonological structure and the semantic content of the lexeme for the triggering context. Computational models, due to the nature of their input, look to orthographic context. The third assumption is that each stem morpheme is inflected consistently according to the inflectional class it belongs to, plus any idiosyncrasies of the stem.
 
-Computational models have successfully learned frequent and regular paradigmatic patterns with high accuracy even in low-resource settings \citep{hammarstrom_unsupervised_2011,durrett_supervised_2013,ahlberg_semi-supervised_2014}. Most early work on paradigm induction applied unsupervised learning to concatenative morphology \citep{goldsmith_unsupervised_2001,chan_learning_2006,monson_paramorfinding_2007b}. Semi-supervised models have been more recently applied on concatenative and non-concatenative languages \citep{dreyer_discovering_2011,durrett_supervised_2013}. 
-
-\begin{figure}
+\begin{figure}[b]
 \begin{center}
 \includegraphics[width=10cm]{figs/PCFP.PNG}
 \caption[Paradigm Cell Filling Problem]{Illustration of the Paradigm Cell Filling Problem \citep{silfverberg_encoder-decoder_2018} with Spanish verb paradigms.}
@@ -197,9 +206,11 @@ Computational models have successfully learned frequent and regular paradigmatic
 \end{center}
 \end{figure}
 
+Computational models have successfully learned frequent and regular paradigmatic patterns with high accuracy even in low-resource settings \citep{hammarstrom_unsupervised_2011,durrett_supervised_2013,ahlberg_semi-supervised_2014}. Most early work on paradigm induction applied unsupervised learning to concatenative morphology \citep{goldsmith_unsupervised_2001,chan_learning_2006,monson_paramorfinding_2007b}. Semi-supervised models have been more recently applied on concatenative and non-concatenative languages \citep{dreyer_discovering_2011,durrett_supervised_2013}. 
+
 Supervised learning has also been applied to inflectional morphology. Some work focuses on generating inflected forms, including work motivated by the Paradigm Cell Filling Problem (PCFP), illustrated in Figure \ref{fig:PCFP}. These studies attempt to model how new speakers infer the inflected forms they have not encountered \citep{dreyer_discovering_2011,ahlberg_paradigm_2015,malouf_generating_2016,silfverberg_encoder-decoder_2018}. Other work with supervised learning has attempted to induce inflectional paradigms from text. Paradigms have to be completed by finding overlapping patterns from several incomplete paradigms that are found in text. One method abstracts the longest common subsequence of characters in words and then clusters words with same or similar patterns  \citep{ahlberg_semi-supervised_2014,ahlberg_paradigm_2015}. This is illustrated in Figure \ref{fig:LCS}. Exceptions or irregularities in the paradigms can be accounted for by collapsing the similar patterns. The experiment has been quite successful for a few Indo-European languages (German, Spanish, Catalan, French, Galician, Italian, Portuguese, Russian), as well as Maltese and Finnish.
 
-\begin{figure}[h!]
+\begin{figure}[h]
 \begin{center}
 \includegraphics[width=10cm]{figs/Ahlberg2015-LCS.PNG}
 \caption[Ahlberg et al. (2015)]{Ahlberg et al. (2015): Inducing paradigms. The longest common subsequences (LCS) \textit{rng} or \textit{swm} are extracted (step 1) and represented as \textit{x\textsubscript{1}} and \textit{x\textsubscript{2}} which replace the LCS (step 2). Words with the same inflectional patterns will be identical (step 3) and can be generalized into paradigms (step 4). The remaining characters \textit{i}, \textit{a}, \textit{u} are assumed to be inflectional affixes.}

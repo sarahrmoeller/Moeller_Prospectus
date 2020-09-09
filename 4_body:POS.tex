@@ -1,23 +1,23 @@
-\section{Body Chapter: To POS or not to POS}
+\section{Body Chapter: Priority of Part of Speech Tagging}
 \label{sec:POS}
 
-Parts of speech (also known as POS, word classes, or syntactic categories) give information about a word and its neighbors in a sentence. POS tagging---labeling each word with a part of speech---is traditionally an early task in the NLP pipeline because of the role the tags have in parsing, named entity recognition, co-reference resolution, and even disambiguating pronunciation in speech synthesis. POS tags have been assumed necessary or helpful for other NLP tasks including (re-)inflection. As a relatively simple machine learning task, it has been one of the first task tackled in machine learning for low-resource languages \citep{cox_probabilistic_2010,de_pauw_resource-light_2012,baldridge_learning_2013,duong_natural_2017,anastasopoulos_computational_2019,millour_unsupervised_2019}. 
+Parts of speech (also known as POS, word classes, or---more commonly in non-computational linguistics---lexical or syntactic categories) give information about a word and its neighbors in a sentence. POS tagging is labeling each word with a part of speech and is traditionally an early task in the NLP pipeline because of the role the tags play in parsing, named entity recognition, co-reference resolution, and even disambiguating pronunciation in speech synthesis. POS tags have been assumed necessary or helpful for other NLP tasks including (re-)inflection. It has also been one of the first task tackled in machine learning for low-resource languages probably because as a machine learning task is relatively easy to achieve very high performance \citep{cox_probabilistic_2010,de_pauw_resource-light_2012,baldridge_learning_2013,duong_natural_2017,anastasopoulos_computational_2019,millour_unsupervised_2019}. 
 
-However, documentary and descriptive linguistics does not put as high a priority on annotating what they more commonly refer to as syntactic categories. Identifying and labeling a  language's syntactic categories is not usually considered part of the language documentation or early descriptive workflow. when POS tagging is done early, it is usually because the project's short-term goals will benefit. For example, a linguist focusing on the roles of verb tenses in narrative discourse may prioritize POS tagging in order to focus segmentation and glossing on the verbs. 
+However, documentary and descriptive linguistics does not put as high a priority on syntactic categories. Identifying and tagging parts of speech is rarely mentioned as part of the language documentation and description workflow. If POS tagging is done early in the workflow, then it is usually because the project's short-term goals will directly benefit. For example, a linguist studying the salience schema of verb tenses in narrative discourse may prioritize POS tagging so that segmentation and glossing can be focused on the verbs. 
 
-This mismatch of priorities raises a question for integrating machine learning into the language documentation and description workflow or leveraging documentary and descriptive data for NLP. Should documentary and descriptive linguistics training emphasize early POS tagging? 
-This study will examine that question as it relates to two tasks from the later stages of language documentation: morpheme segmentation and glossing and inflectional paradigm discovery. Both tasks could potentially benefit from early identification and tagging of syntactic categories in IGT. Do the presence/lack of POS tags significantly affect the results of either of these tasks when performed by machine learning models? To answer this question, experiments will be run that differ only in the presence/lack of POS tags.
+This mismatch of priorities presents a possible problem for integrating machine learning into the language documentation and description or for utilizing documentary and descriptive data in NLP. Should documentary and descriptive linguistics training emphasize early POS tagging? 
+This study will examine that question as it relates to two tasks. The first study looks at the lack/presence of POS tag in reinflection tasks; the second looks at the effect of POS tags for segmentation and glossing. Identical experiments will be run that differ only in the presence/lack of POS tags in order to test whether this significantly affects the results when performed by machine learning models. This chapter describes two pilot studies. 
 
-On the one hand, identifying and tagging syntactic categories could be very helpful for NLP tasks and any attempt to work with documentary and descriptive data in NLP. On the other hand, it can be quite difficult to do. In some languages it is quite difficult to identify POS tags without an already detailed understanding of the language's syntax, something that linguists do not normally possess in the early and intermediate stages of documentation and description. It is not easy to do period. Some languages are easier. For example Russian adjectives, adverbs, and verbs are marked with unique suffixes. In other languages it is more difficult. For example, English morphology does not distinguish uniquely any part of speech morphologically except (most) adverbs. And even that distinction is often lost in spoken language, the kind of language that documenters would be recording and studying. We can see that in phrases such as ``Joe did it quick.'' The existence of POS is even controversial among some linguists (CITE??). Can words such as ``quick'' in English be truly categorized into one particular part of speech since it can function as a noun, adjective, and adverb. Or ``dope'' which can function as a noun, adjective, or verb without any morphological change? When words syntactic category can only be determined in a syntactic structure, the job of tagging them with POS require more time and analysis and knowledge of the language.   
-%NOT TRIVIAL or SETTLED
+Although it is reasonable to expect both tasks to improve from early identification syntactic categories and POS tagging since morphotactics depend to some degree on such categories, this assumption needs to be tested. The presence of POS tags might help the systems filter affix shapes and glosses. For example, if a word is tagged as \textsc{verb} then a final sequence ``ed'' is more likely to be its own morpheme glossed as \textsc{past}. However, this might not be true in languages where affixes are not ambiguous (e.g. if ``ed'' rarely occurred word-finally on any other syntactic category), or where ambiguous features rarely occur singly (e.g. if plurality always co-occurs with nominal case marking), or where affixes marking a certain feature is identical across categories. In those cases, POS tags may prove to be redundant information.
 
-Intuitively, the presence of POS tags would help the systems narrow the possible affixes that a word should have. For example, if the feature `plural' appears on both verbs and nouns but they are marked with different affixes, then the machine learning systems could leverage the information of the POS tags. If the presence of POS tags improves machine learning for other documentary and descriptive tasks, then linguistics departments should recommend that field methods emphasize early identification and labeling of lexical categories. On the other hand, in languages where ambiguous features rarely occur singly, or where the features are marked identically across lexical categories, the POS tags may prove to be redundant information. In that case, it would make little sense to introduce a new manual task to already overburdened field linguists.
+If the presence of POS tags improves machine learning assistance for documentary and descriptive tasks, then linguists should adjust their accepted workflow to emphasize early identification and labeling of parts of speech. On the other hand, it would make little sense to introduce a new manual task to already overburdened field linguists if it does not improve or speed later tasks. Especially when the task introduces its own difficulties. The identification of syntactic tags is not trivial. It can be quite difficult to identify categories without a detailed understanding of the language's syntax, something that linguists do not normally possess in the early stages of documentation and description. Some languages are easier; for example, Russian adjectives, adverbs, and verbs are consistently marked with fairly unique suffixes. In other languages it is more difficult. For example, English does not uniquely or consistently distinguish any part of speech except (most) adverbs which are marked with ``-ly''. Even that distinction may is often lost in natural spoken language, as we can see in phrases such as ``I can do it quick.'' In fact, the nature of  syntactic categories \citep{rauh_syntactic_2010}, the criteria for identifying them  \citep{croft_parts_2000}, and their very existence as universal property of language \citep{gil_word_2005} is not entirely settled among linguists. Can words such as ``quick'', ``walk'', ``sleep'' in English be truly categorized into one particular part of speech since they can function as different categories when placed in syntax. If a category can only be determined in the context of a sentence, then perhaps it should not be considered an inherent property of the lexicon \citep{rauh_linguistic_2016}. These issues further complicate attempts to analyze and tag parts of speech in a particular language. 
+
+%On the one hand, syntactic categories could be very helpful for NLP tasks and any attempt to work with documentary and descriptive data in NLP. On the other hand, it can be quite difficult to do. 
 
 
 \subsection{POS for IGT2P}
 
-An early step in the linguistic analysis of an under-documented language 
-is to describe the patterns of inflected forms attested in textual data. 
+An early step in the linguistic analysis of an under-documented language is to describe the patterns of inflected forms attested in textual data. 
 Linguists may generate unattested inflected word forms in order to test a hypothesis of the inflectional patterns or to complete inflectional paradigm tables. Section \ref{sec:inflection} introduces a new task to automatically generate morphological resources for low-resource languages: IGT-to-paradigms (IGT2P).
 The goal of this task is to adapt neural morphological reinflection systems to generate entire morphological paradigms from IGT input. In addition to the lemma and the morphological features of the target form, part-of-speech (POS) tags have been by default a part of the input to such neural morphological reinflection systems. POS tags are assumed to carry valuable information, since, for example, morphemes that are otherwise identical (e.g. ``seat'') may use one set of inflectional morphemes as nouns (e.g. ``many seats'') and another as verbs (``be seated''). However, since POS tags are typically annotated at a later stage than morpheme boundaries and glosses, IGTs often do not contain POS tags for all or any words.
 
@@ -26,9 +26,7 @@ Thus,
 %Based on this, in addition to our goal to exploit the potential of the IGT as fully as possible, 
 it asks the following research question: \textit{Are POS tags a necessary or beneficial input to a morphological reinflection system?} 
 
-To answer this question, two morphological reinflection systems will be trained on 10 languages that have been released for the CoNLL-SIGMORPHON 2018 shared task \citep{cotterell-etal-2018-conll} and on six languages described in Chapter \ref{chap:datamodels} that have a significant amount of POS labels in their IGT corpus. It is worth noting that these corpora are either the result of many years of work, where POS tags were eventually added, or the POS tags benefited a short-term goal, or the POS tags were added specifically for this project. In order to obtain generalizable results, the selected CoNLL-SIGMORPHON languages belong to different families and are typologically diverse with regards to morphology: Adyghe, Arabic, Basque, Finnish, German, Persian, Russian, Spanish, Swahili, Turkish.\footnote{The language family and morphological typology for each language is on the UniMorph official website (\url{https://unimorph.github.io}).} The six IGT corpora are Alas, Arapaho, Lamkang, Lezgi, Natügu, and Tsez. Some have only ``POS'' tags for morphemes (Arapaho) and some only for full words (Alas, Lamkang, Tsez). Those that have both will be tested with each. 
-
-TO ADD: EXAMPLE of TAGS at different levels
+To answer this question, two morphological reinflection systems will be trained on 10 languages that have been released for the CoNLL-SIGMORPHON 2018 shared task \citep{cotterell-etal-2018-conll} and on six languages described in Chapter \ref{chap:datamodels} that have a significant amount of POS labels in their IGT corpus. It is worth noting that these corpora are either the result of many years of work, where POS tags were eventually added, or the POS tags benefited a short-term goal, or the POS tags were added specifically for this project. In order to obtain generalizable results, the selected CoNLL-SIGMORPHON languages belong to different families and are typologically diverse with regards to morphology: Adyghe, Arabic, Basque, Finnish, German, Persian, Russian, Spanish, Swahili, Turkish.\footnote{The language family and morphological typology for each language is on the UniMorph official website (\url{https://unimorph.github.io}).} The six IGT corpora are Alas, Arapaho, Lamkang, Lezgi, Natügu, and Tsez. One only has ``POS'' tags for morphemes (Arapaho) and some only for full words (Alas, Lamkang, Tsez) (see Figure \ref{fig:IGTillus} for examples of both). Those that have both will be tested with each set of tags individually and with both types of tags together. 
 
 The original training/validation/test splits will be kept for the CoNLL-SIGMORPHON data and the experiment conducted on the three available training sets: 10,000, 1000, and 100 examples for the \textit{high}, \textit{medium}, and \textit{low} setting, respectively. For the selected IGT corpora, the same three data sizes will recreated as much as possible. For example, Alas has less than 5,000 instances available, so the three settings will be 100 examples for the \textit{low} setting, 1,000 for \textit{medium}, and on all available instances for \textit{high}.  
 
@@ -37,31 +35,15 @@ The experiments will be run with two state-of-the-art neural models for morpholo
 %We investigate the effect of POS tags with the following models from Section \ref{sec:models}: TODO
 The models will be trained twice, once with and once without POS tags on the input. 
 
-\subsection{POS for Segmenting and Glossing}
+\subsection{Pilot study: POS for Inflection}
 
-Segmenting and glossing morphemes is an essential step in the process of creating IGT from transcribed documentary data. Theoretically, the presence of a POS tag on the input could help a machine learning system filter probable affix/gloss choices. This experiment will ask \textit{Are POS tags beneficial to an automated segmenting and glossing?} 
-
-To answer this question, three models will be trained. The first will train on the data without POS tags; the second will train with POS tags on each input instance. A third model will be trained on all the data but the data will include POS tags on only a certain percentage of instances. [EXPLAIN MORE/FIGURES] 
-
-The experiments will be set up exactly as described in section \ref{sec:seggls} with the Transformer model. In order to determine how differing amounts of POS tagging might benefit the task, the three models will be tested with differing amounts of data or differing amounts of POS tags. Experiments will be run at 1\%, 3\%, 6.5\%, 10\%, 20\%, 30\%, 40\%, and 100\% of the full data/POS amount. 
-
-\subsection{Pilot studies: To POS Tag or not to POS Tag}
-
-This section describes two pilot studies conducted to address the questions presented above. This first study looks at the lack/presence of POS tag in reinflection. The second looks at the affect of POS tags to a segmentation and glossing.
-
-\paragraph{POS for Inflection.}
 % Figures \ref{fig:posTrans} and \ref{fig:posMono}
-This pilot study was run on the selected CoNLL-SIGMORPHON languages. It is described in a paper under review at EMNLP 2020. 
-Table \ref{tab:POSIGT2P} illustrates the performance difference when including and not including POS tags for all three training data sizes. 
-%(see Table \ref{tab:pos-acc-detail} in the appendix for accuracy details). 
-The largest difference is a decrease of 4.4 percentage points when POS tags are removed for Finnish at the medium setting using hard monotonic attention. 
-The average difference is about 0.2 percentage points.
-From this, it can be concluded that a lack of POS tags in IGTs does not make a significant difference in the reinflection task for well-curated data. The dissertation research will show whether this holds true for IGT field data.
+This pilot study was run on the selected CoNLL-SIGMORPHON languages and is described in a paper under review at EMNLP 2020. 
+Table \ref{tab:POSIGT2P} illustrates the performance difference when including and not including POS tags for all three training data sizes.
 
 \begin{table}[h!]
     \centering
     \begin{tabular}{ll|ccc|ccc}
-    \toprule
         & & \multicolumn{3}{c|}{\textbf{transformer model (\%)}} & \multicolumn{3}{|c}{\textbf{Exact hard mono model (\%)}} \\
         \cline{3-8}
        \textbf{Language} & \textbf{POS} & \textbf{high $\Delta$} & \textbf{medium $\Delta$} & \textbf{low $\Delta$} & \textbf{high $\Delta$} & \textbf{medium $\Delta$} & \textbf{low $\Delta$} \\
@@ -80,8 +62,32 @@ From this, it can be concluded that a lack of POS tags in IGTs does not make a s
     \label{tab:POSIGT2P}
 \end{table}
 
-% Ask about Ling variation on Basque and Persian since it should just be random variation. Statisical noise.
-% Point out that it is a single run (Check with Ling). Will run multiple times. Just one column, probably medium (or low).
+ 
+%(see Table \ref{tab:pos-acc-detail} in the appendix for accuracy details). 
+The largest difference is a decrease of 4.4 percentage points when POS tags are removed for Finnish at the medium setting using hard monotonic attention. 
+The average difference is about 0.2 percentage points.
+From this, it can be concluded that a lack of POS tags in IGTs does not make a significant difference in the reinflection task for well-curated data. The dissertation research will show whether this holds true for IGT field data. 
+
+This study will also be expanded. The results in Table \ref{tab:POSIGT2P} are from a single run and some random variation seems to have entered the results. This is noticeable in the variation on Basque and Persian which have only one part of speech. The presence/lack of the POS tags should make not make a difference in the results since the POS tags is definitely redundant information. To remove statistical noise, the proposed dissertation will rerun the experiment multiple times on all the languages at the \textit{medium} setting.
+
+
+\subsection{POS for Segmenting and Glossing}
+
+Segmenting and glossing morphemes is an essential step in the process of creating IGT from transcribed documentary data. Theoretically, the presence of a POS tag on the input could help a machine learning system filter probable affix/gloss choices. This experiment will ask \textit{Are POS tags beneficial to an automated segmenting and glossing?} 
+
+To answer this question, three Transformer models will be trained. The first will train on the data without POS tags as shown in example (\ref{ex:POSSG1in}). The second will train with POS tags on each input instance as shown in example (\ref{ex:POSSG23in}). A third model will also be trained on all the data and will include some POS tags, but the data will include tags on only a certain percentage of instances. 
+
+\begin{singlespace}
+\pex<POSSG>   
+\label{ex:POSSG}
+\a<a> \textbf{Model 1 INPUT:} \hspace{6 mm} g \hspace{2 mm} o \hspace{2 mm} n \hspace{2 mm} e 
+\label{ex:POSSG1in}
+\a<b> \textbf{Model 2 \& 3 INPUT:} \hspace{6 mm} g \hspace{2 mm} o \hspace{2 mm} n \hspace{2 mm} e \hspace{2 mm} V
+\label{ex:POSSG23in}
+\xe
+\end{singlespace}
+
+The experiments will be set up exactly as described in section \ref{sec:seggls} with the Transformer model. In order to determine how differing amounts of POS tagging might benefit the task, the three models will be tested with differing amounts of data or differing amounts of POS tags. Experiments will be run at 1\%, 3\%, 6.5\%, 10\%, 20\%, 30\%, 40\%, and 100\% of the full data/POS amount. 
 
 \paragraph{POS for Segmenting and Glossing.}
 This pilot study was conducted on the Lezgi. Model 1 had no POS tags. Model 2 included POS tags on each line. The runs of Models 1 and 2 should be compared in each individual setting. Model 3 included a percentage of POS tags on random lines of the whole data. All settings of Model 3 can be compared to the 100\% settings of Models 1 and 2. Models 2 and 3 were run with word-level POS tags and with morpheme-level ``POS'' tags. Each experiment was run on a 10-fold validation and tested on a held out dataset that was approximately 10\% of the total data. The development sets are 10\% of the reduced data. The results in Table \ref{tab:POSSG} are therefore an average of ten models tested on the same data. In order to replicate a real life situation where no more POS tags are available without a POS tagger, the test data had no POS tags. 

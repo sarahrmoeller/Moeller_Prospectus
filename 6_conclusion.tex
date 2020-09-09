@@ -1,29 +1,12 @@
-\chapter{Summary}
+\chapter{Conclusion}
 \label{chap:conclusion}
 
+The studies proposed here will investigate the potential to advance the science of linguistics through the integration of NLP machine learning systems. This research has broad intellectual merit and potential impacts. It will provide more usable data in linguistics, leverage field data for NLP models, and test the models efficacy with limited and noisy data which is often the only data available for endangered languages. It also advances murky issues surrounding the nature and role of syntactic categories with an empirical study.
 
-Talk about on future/possible additional ``active learning'' experiment to get feedback.
-IGT2P:
-1) train on partial tables
-2) ask for add'l training instances based on confidence
-3) random
-4) random forms per table but evenly distributed within tables, same minimum number of forms per table.
-\textbf{what the documentation person should do next?}
+The outcomes of this research will have broader impact on future direction of language documentation and description methods and workflow. If theory-based segmentation choices negatively affect the performance of machine learning models on morpheme segmentation and glossing, then linguists who wish to benefit from automated assistance in this task will have to adjust their choices and their investment in manual annotation consistency. If the annotation quality as well as the amount of data determines how different machine learning models perform, then linguists may need to educate themselves on the difference between machine learning models. If these issues make little difference, then documentary and descriptive linguists can continue with currently accepted methods and workflows.
 
-Implications:
-If the presence of POS tags makes a significant difference in the results, then documentary and descriptive linguists may want to re-examine their accepted workflow and emphasize early analysis and labeling of syntactic categories. If the difference is trivial, then linguists would have little reason to allocate early time and funding to POS tagging. NLP practitioners may also want to reconsider their reliance on POS tags for some tasks. 
+If documentary and descriptive IGT that has been manually annotated can be utilized for computational induction of morphological inflection patterns with minimal need for domain experts, then both linguists and NLP practitioners can confidently increase their collaboration. They can further develop NLP for low-resource settings and perhaps focus together on systems that mutually benefits the discipline of linguistics, the development of NLP, and the practical needs of communities engaged in language revitalization or maintenance. 
 
+If the presence of POS tags makes a significant difference in the results of other automated tasks that are helpful to the documentary and descriptive workflow, then linguists may want to re-examine their accepted workflow and emphasize early analysis and labeling of syntactic categories. If the difference is trivial, then linguists have little reason to allocate early time and funding to POS tagging despite its importance to NLP. NLP practitioners, in turn, may need to reconsider their reliance on POS tags for some tasks. 
 
-Intellectual Merit:
-more data in linguistics
-NLP with field data
-NLP with noisy data
-NLP with limited, noisy data
-NLP with endangered languages
-new linguistics field methods
-linguistics field methods affect and are affected by theory-based analyses
-experimental study of role and reality of POS
-
-
-Broader Impacts:
-methods to speed and improve accessible data
+A natural future direction of this research is to address the practical implications of integrating machine learning and answer the question: what should the documentary/descriptive linguist do next? One way to address this would be to conduct ``active learning'' experiments. Active learning iteratively retrains machine learning models with a small set of new manual annotations. A key issue how to select data instances for annotation that will help the model improve  most quickly with least amount of manual effort. Selection methods based on computational and linguistic motivations could be tested and compared. For example, active learning for IGT2P would involve first training the model on partial tables, then comparing the results when it is retrained on data that was selected by different methods. Methods could be 1) selecting word forms to parse from on predictions that the model had least ``confidence'' about, 2) randomly selecting word forms, 3) selecting a random number word forms but making sure they are evenly distributed among tables, or 4) selecting word forms so that each table has the same minimum number of forms per table. This same experiment could be conducted for joint segmentation and glossing. The first two methods would remain the same, but other methods could be 3) selecting a number of least frequent word types, 4) selecting word forms based on statistically rare letter sequence combinations (in attempt to identify rare morphological combinations), or some other method motivated by linguistic facts of the language such as 5) annotating only nouns in Lezgi which are most likely to have irregular allomorphy. Either of these experiments are potential additional or alternative studies to the research that is described in this Prospectus.
