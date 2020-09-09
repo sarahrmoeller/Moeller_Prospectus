@@ -89,7 +89,8 @@ To answer this question, three Transformer models will be trained. The first wil
 
 The experiments will be set up exactly as described in section \ref{sec:seggls} with the Transformer model. In order to determine how differing amounts of POS tagging might benefit the task, the three models will be tested with differing amounts of data or differing amounts of POS tags. Experiments will be run at 1\%, 3\%, 6.5\%, 10\%, 20\%, 30\%, 40\%, and 100\% of the full data/POS amount. 
 
-\paragraph{POS for Segmenting and Glossing.}
+\subsection{Pilot Study: POS for Segmenting and Glossing.}
+
 This pilot study was conducted on the Lezgi. Model 1 had no POS tags. Model 2 included POS tags on each line. The runs of Models 1 and 2 should be compared in each individual setting. Model 3 included a percentage of POS tags on random lines of the whole data. All settings of Model 3 can be compared to the 100\% settings of Models 1 and 2. Models 2 and 3 were run with word-level POS tags and with morpheme-level ``POS'' tags. Each experiment was run on a 10-fold validation and tested on a held out dataset that was approximately 10\% of the total data. The development sets are 10\% of the reduced data. The results in Table \ref{tab:POSSG} are therefore an average of ten models tested on the same data. In order to replicate a real life situation where no more POS tags are available without a POS tagger, the test data had no POS tags. 
 
 \begin{table}[]
