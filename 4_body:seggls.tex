@@ -9,7 +9,7 @@ The experiments will address two questions.
 
 \begin{enumerate}
     \item To what extent do these choice affect the performance of a neural Transformer model compared to a Conditional Random Fields model? 
-    \item To what extent do they make a pipeline approach preferable to joint learning of morpheme boundaries and glosses?
+    \item Is a segment-then-gloss pipeline approach ever preferable over joint learning of morpheme segments and glosses?
 \end{enumerate}
     
 \subsection{Segmentation Strategies}    
@@ -23,51 +23,51 @@ Surface segmentation is easier because the algorithms are not usually tasked to 
 %, though some learning of morphophonogical changes may happen before segmentation 
 %For this reason, computational morpheme segmentation tends to perform better on concatenative morphology while computational modeling of non-concatenative morphology, particularly when it occurs in a language that also evinces concatenative morphology (common among Austronesian languages including Bahasa Alas and Natugu), remains ``arguably one of the main current challenges'' of computational morphology \citep{goldsmith_computational_2017}. 
 
-The corpora chosen for the research demonstrate different strategy choices.  Tsez has canonical segments and Arapaho has surface segments. The other languages, Manipuri, Natugu, Lamkang, Lezgi, and Alas were interlinearized with FLEx which uses both strategies simultaneously because of how the software interface works. These four languages will be used for this study because they allow comparison of the two segmentation strategies. However, only tokens that were segmented by both strategies are used. In most cases, only a few words are missing a canonical segments. Table \ref{tab:BothSegs} shows the number of words that are segmented by both strategies. Note that except for Lamkang and Lezgi this numbers are identical to Table \ref{tab:goldstandard}.
+The corpora chosen for the research demonstrate different strategy choices.  Tsez has canonical segments and Arapaho has surface segments while Alas and Lamkang, Lezgi, Manipuri, and Natugu were interlinearized with FLEx which allows both strategies simultaneously because of how the software interface works\footnote{Note that the surface segment line can and sometimes was edited, either by mistake or to include some underlying representation.}. These languages will be used for this study because they allow comparison of the two segmentation strategies. However, only tokens that were segmented by both strategies are used. In most cases, only a few words are missing a canonical segments. Table \ref{tab:BothSegs} shows the number of words that are segmented by both strategies. 
 
 \begin{table}[t]
     \centering
     \begin{tabular}{l|r|rc}
          \textbf{Language} & \textbf{Tokens} & \multicolumn{2}{c}{\textbf{Gold}} \\
          \hline
-         Alas & 4.5K & 3,775 & 85\%  \\
+         Alas & 4.5K & 3,715 & 83\%  \\
          % 4462 btz raw number of tokens 
          % segmented and glossed: 3775/4462 = 0.846
-         % both segs & glossed: 3775/4462 = 0.846
+         % segmented in both ways with no editing: 3715/4462 = 0.832
          % surf segmented: 3840
          % canonically segmented: 3840
          % glossed: 3775
          % translated: 302/303
          \hline
-         Lamkang & 101K & 49,465 & 49\% \\
+         Lamkang & 101K & 43,814 & 43\% \\
          % segmented & glossed: 50252/101005 = 0.497
-         % both segs & glossed: 49465/101005 = .489
+         % segmented in both ways with no editing: 43814/101005 = .433
          % surf segmented: 60667
          % canonically segmented: 49699
          % glossed: 50252
          % translated: 8629/8640 = 0.998
          \hline
-         Lezgi & 14K & 13,262  &  94\% \\
+         Lezgi & 14K & 12,797  &  90\% \\
         % 14175 lez actual number of tokens
         % segmented & glossed: 13353/14175 = 0.942
-         % both segs & glossed: 13262/14175 = 0.935
+         % segmented in both ways with no editing: 12797/14175 = 0.902
          % surf segmented: 13943
          % canonically segmented: 13625 
          % glossed: 13353
          % translated: 1531/1532
          \hline
-         Manipuri & 12K & 11,907 & 98\% \\
+         Manipuri & 12K & 10,635 & 88\% \\
         % 12139 mni actual number of tokens 
         % segmented & glossed: 11907/12139 = 0.980
-         % both segs & glossed: 11904/12139 = 0.980
+         % segmented in both ways with no editing: 10635/12139 = 0.876
          % surf segmented: 12187
          % canonically segmented:  11908
          % glossed: 11907
          % translated: 1784/1785
          \hline
-         Natügu & 16.5K & 13,925 &  84\%  \\
+         Natügu & 16.5K & 12,435 &  75\%  \\
         % 16520 ntu actual number of tokens 
-        % segmented & glossed: 13925/16520 = 0.842
+        % segmented in both ways with no editing: 12435/16520 = 0.752
          % MWE seg & glossed: 13924/16520 = 0.842
          % surf segmented: 14577
          % canonically segmented:  14136
@@ -75,7 +75,7 @@ The corpora chosen for the research demonstrate different strategy choices.  Tse
          % translated: 1541/1542
     \end{tabular}
     \caption[Both Segmentation Strategies Corpora]{Total approximate tokens and the gold standard data for segmentation and glossing. The gold data is the number of tokens that were segmented in as both canonical and surface segments, as well as glossed, shown as a number and as a percentage of corpus.}
-    \label{tab:goldstandard}
+    \label{tab:BothSegs}
 \end{table}
 
 \subsection{Model Comparison}
@@ -122,10 +122,10 @@ The Transformer will take in one word per line and output a sequence of labels, 
 A pipeline system will be used to compare performance when jointly training for segmentation and glossing {\tt versus} sequential training. 
 %This experiment will show whether the separate segmentation and glossing achi  easier than joint segmentation and glossing.
 %Morpheme segmentation is presumably much easier than joint segmentation and labeling, the proposed study will also experiment with a 
-The pipeline system will first segment with the CRF and then gloss with the SVM. This allows a richer set of contextual features to be used for the glossing process. The SVM will be able to  use surrounding morphemes as features.   
+The pipeline system will first segment with the CRF and then gloss with the SVM. This allows a richer set of contextual features to be used for the glossing process. The SVM will be able to use the predicted morpheme shapes as features.   
 
 \begin{singlespace}
-\pex<CRFInOut>   
+\pex<CRF2InOut>   
 \label{ex:CRF2InOut}
 \a<a> \textbf{INPUT:} \hspace{8 mm} I \hspace{8 mm} a \hspace{9 mm} m \hspace{8 mm} g \hspace{8 mm} o \hspace{8 mm} n \hspace{10 mm} e 
 \label{ex:CRF2in}
@@ -140,7 +140,7 @@ The CRF will be run as described above but the labels will only indicate morphem
 \begin{singlespace}
 \pex<CRFInOut>   
 \label{ex:SVMInOut}
-\a<a> \textbf{INPUT:} \hspace{7 mm} i \hspace{4 mm} am \hspace{2 mm} go \hspace{5 mm} ne 
+\a<a> \textbf{INPUT:} \hspace{7 mm} i \hspace{4 mm} am \hspace{2 mm} go \hspace{5 mm} -ne 
 \label{ex:SVMIn}
 \a<b> \textbf{OUTPUT:} \hspace{1 mm} 1\textsc{sg} \hspace{1 mm} be \hspace{1 mm} move \hspace{1 mm} \textsc{ptcp}
 \label{ex:SVMOut}
