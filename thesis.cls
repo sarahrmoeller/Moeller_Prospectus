@@ -1083,7 +1083,7 @@
 			\setlength{\itemsep}{0pt}}
 		\item \th@revname\ (\th@degree)
 		\item \th@title
-       \item Thesis directed by \th@advisortitle\ \th@advisor
+       %\item Research directed by \th@advisortitle\ \th@advisor
 	\end{list}
 	\par
 	\vspace*{4\parsep}

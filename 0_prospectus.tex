@@ -51,8 +51,33 @@
 
 \abstract{  \OnePageChapter	% because it is very short
 
-Machine learning can provide automated assistance to document and describe endangered languages with speed and accuracy, but linguists must know how to make effective use of it. The proposed dissertation research will focus on effective integration of machine learning into language documentation and description. It will look specifically at integration into morphological annotation and analysis. It will investigate methods for achieving optimal results and assistance from machine learning.
-	}
+While documentary and descriptive linguistics have steadily broadened our knowledge of new languages, its current methods are too slow to counteract the pace of language extinction.
+%\citep{krauss_worlds_1992,krauss_keynote--mass_2007,campbell_new_2013}. 
+Recent NLP research has engaged with low-resource languages and shown that machine learning can provide automated assistance to speed and improve the documentation and description of under-documented languages. However, we must know how to make effective use of this research. Using state-of-the-art machine learning and linguistics fieldwork data, the proposed dissertation explores how to make computational methods more accessible to linguists and how to make endangered language data available to NLP. This will result in a virtuous cycle where NLP systems are integrated into linguistics to preserve endangered languages and and linguistics provides new data to improve NLP systems in low-resource settings. The proposed dissertation looks specifically at issues in morphological annotation and analysis.
+
+The prospectus proposes studies that will address three questions:
+
+\begin{enumerate}
+\item 
+\textit{How do early analytical decisions by linguists affect the integration of machine learning? }
+%Segmenting words into meaningful units, and translating (glossing) those units, are important analytic tasks that must be undertaken early with any new language data. 
+%When segmenting words, linguists use abstract forms based on their analysis of ``underlying'' information, which allows them to ignore spelling changes triggered by surrounding sounds (e.g. the first two letters in ``il-legal'', ``im-mature'', and ``in-capable'' would be represented as ``in'' and glossed as 'negation'). 
+%In contrast, NLP segmentation algorithms just divide words into strings of text. This ``surface'' segmentation does not require abstract analysis but it also greatly increases the number of segments that a computational model must learn (e.g. ``il'', ``im'', and ``in'' instead of just ``in''). 
+%This experiment tests both strategies with machine learning models to see how NLP algorithms could be fine-tuned to better serve linguists' approach or whether it would be more efficient for linguists to perform surface segmentation and add abstract forms after only after integrating segmentation algorithms.
+
+\item 
+\textit{To what extent can fieldwork language data along with language experts be leveraged for automated learning of a language's morphological inflectional paradigms?}
+%NLP struggles with new language data not only because it comes in small quantities, but also because the linguistic fieldwork data, which is sometimes the only available resource, is often ``noisy''. Fieldwork analysis lacks the ruthless consistency that the algorithms need. Following traditional workflows, it takes months or years to annotate fieldwork data consistently. This study introduces a new methodology to automatically learn a language's word-building patterns after only 2-6 hours of annotation. After minimal manual work by language experts, the algorithms will generate correct words. 
+%This study will demonstrate the potential for using artificial intelligence for advanced linguistics analysis.
+
+\item 
+\textit{How does the lack or presence of part of speech tags affect the success of NLP systems?}
+%NLP traditionally places high priority on identifying a word's part of speech but linguistics does not give this task as high a priority. Identifying parts of speech in a new language is a complicated task that requires a thorough understanding of the language's high-level sentence structures. This mismatch of priorities presents a potential problem for integrating computational methods into the documentation and description of new languages. 
+%This study tests NLP's assumption that early identification of parts of speech is vital to build accurate NLP algorithms. 
+%It conducts identical experiments that differ only in the presence/lack of parts of speech labels and compares the results to show whether they significantly affect the algorithms' performance. 
+\end{enumerate}
+
+}
 
 \ToCisShort	% use this only for 1-page Table of Contents
 

@@ -8,8 +8,8 @@ The study proposed in this section asks: \emph{How do choices made during interl
 The experiments will address two questions.
 
 \begin{enumerate}
-    \item To what extent do these choice affect the performance of a neural Transformer model compared to a Conditional Random Fields model? 
-    \item Is a segment-then-gloss pipeline approach ever preferable over joint learning of morpheme segments and glosses?
+    \item To what extent do segmentation choices affect the performance of a neural Transformer model compared to a Conditional Random Fields model? 
+    \item Is a segment-then-gloss sequential approach ever preferable over joint learning of morpheme segments and glosses?
 \end{enumerate}
     
 \subsection{Segmentation Strategies}    
@@ -23,7 +23,7 @@ Surface segmentation is easier because the algorithms are not usually tasked to 
 %, though some learning of morphophonogical changes may happen before segmentation 
 %For this reason, computational morpheme segmentation tends to perform better on concatenative morphology while computational modeling of non-concatenative morphology, particularly when it occurs in a language that also evinces concatenative morphology (common among Austronesian languages including Bahasa Alas and Natugu), remains ``arguably one of the main current challenges'' of computational morphology \citep{goldsmith_computational_2017}. 
 
-The corpora chosen for the research demonstrate different strategy choices.  Tsez has canonical segments and Arapaho has surface segments while Alas and Lamkang, Lezgi, Manipuri, and Natugu were interlinearized with FLEx which allows both strategies simultaneously because of how the software interface works\footnote{Note that the surface segment line can and sometimes was edited, either by mistake or to include some underlying representation.}. These languages will be used for this study because they allow comparison of the two segmentation strategies. However, only tokens that were segmented by both strategies are used. In most cases, only a few words are missing a canonical segments. Table \ref{tab:BothSegs} shows the number of words that are segmented by both strategies. 
+The corpora chosen for the research demonstrate different strategy choices. Tsez has canonical segments and Arapaho has surface segments while Alas and Lamkang, Lezgi, Manipuri, and Natugu were interlinearized with FLEx which allows both strategies simultaneously because of how the software interface works\footnote{Note that the surface segment line can and sometimes was edited, either by mistake or to include some underlying representation.}. These languages will be used for this study because they allow comparison of the two segmentation strategies. However, only tokens that were segmented by both strategies are used. In most cases, only a few words are missing a canonical segments. Table \ref{tab:BothSegs} shows the number of words that are segmented by both strategies. 
 
 \begin{table}[t]
     \centering
@@ -83,9 +83,10 @@ The corpora chosen for the research demonstrate different strategy choices.  Tse
 The performance on segmentation and glossing tasks will be compared across three machine learning systems.  Performance on the same segmentation strategy by different machine learning systems can identify the factors that linguists should consider when choosing machine learning systems. Performance on different segmentation strategies for the same language will show whether the choice of a segmentation strategy should affect the choice of model.  
 %Statistical models such as the CRF can often outperform a neural model in low-resource settings.
 
-Performance will be evaluated by a cross-validation on ten held out subsets of the IGT corpora. The systems will be compared by F$_1$-scores of output labels and the levenshtein distance between predicted and gold standard output. 
+Performance will be evaluated by a cross-validation on ten held out subsets of the IGT corpora. The systems will be compared by F$_1$-scores of output labels. 
+%and the levenshtein distance between predicted and gold standard output. 
 %The output labels will indicate morpheme segments and glosses. 
-The F$-1$-scores will indicate the number of morphemes that are correctly segmented and glossed. Levenshtein distance measures the difference between two strings by the minimum number of edits (insertions, deletions, substitutions). 
+The F$-1$-scores will indicate the number of morphemes that are correctly segmented and glossed. %Levenshtein distance measures the difference between two strings by the minimum number of edits (insertions, deletions, substitutions). 
 
 \paragraph{Joint Segmentation and Glossing.}
 The CRF and the Transformer will perform joint segmentation and glossing. The dissertation will use a Transformer instead of a LSTM-based model that was used in the pilot study (see section \ref{sec:pilotseggls}). Since that study was publishe, the Transformer model outperformed the LSTM-based model and is now considered state-of-the-art. \cite{wu2020applying} found it achieved best results in low resource settings with character-level representation. 
@@ -94,7 +95,7 @@ The CRF and the Transformer will perform joint segmentation and glossing. The di
 
 The joint segmentation and glossing task will be treated as a problem of converting an input sequence of letters $\vect{x} = (x_1, \ldots, x_n)$ to an output sequence of symbols $\vect{y} = (y_1, \ldots, y_n)$. The input for both models will be a character-level representation of the text, represented as a string of space-delimited letters. The output will be a sequence of labels indicating the (canonical or surface) morpheme, and the morpheme's gloss. The combination of these two bits of information allows the system to perform segmentation and labeling/glossing simultaneously. The labels are specific to each morph or morpheme. %Each line will contain \textbf{one word or one sentence.?????}
 
-The input for the CRF will fed as one sentence per line, as shown in (\ref{ex:CRFin}) for surface segmentation. The input will be a feature function representing each letter. Features will be extracted from the text and will be generalizable for any language, such as letter position in the word and surrounding letter sequences. The output will be BIO-labels \citep{ramshaw1999}, one for each letter, that indicate the position of the letter in the morpheme, the predicted morpheme shape, and its gloss, as shown in (\ref{ex:CRFOut}). This BIO labels declares each letter as either the beginning of a morpheme with ``B'' or as an inside position with``I''. 
+The input for the CRF will fed as one sentence per line, as shown in (\ref{ex:CRFin}) for surface segmentation. The input will be a feature function representing each letter. Features will be extracted from the text and will be applicable to any language, such as letter position in the word and surrounding letter sequences. The output will be BIO-labels \citep{ramshaw1999}, one for each letter, that indicate the position of the letter in the morpheme, the predicted morpheme shape, and its gloss, as shown in (\ref{ex:CRFOut}). This BIO labels declares each letter as either the beginning of a morpheme with ``B'' or as an inside position with``I''. 
 
 \begin{singlespace}
 \pex<CRFInOut>   
